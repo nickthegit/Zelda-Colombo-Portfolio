@@ -3,7 +3,7 @@
     <nav id="main-nav">
       <ul>
         <li class="brand">
-          <nuxt-link to="/">brand</nuxt-link>
+          <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
         </li>
         <li v-for="navItem in navItems" :key="navItem._id">
           <nuxt-link :to="navItem.link">{{ navItem.name }}</nuxt-link>
@@ -17,7 +17,7 @@
     </nav>
     <nav id="mobile-nav">
       <div class="brand" @click="navOpen = false">
-        <nuxt-link to="/">brand</nuxt-link>
+        <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
       </div>
       <button class="hamburger" @click="toggleNav">===</button>
       <ul v-if="navOpen">
@@ -77,13 +77,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$padding: 25px;
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  padding: 25px 40px;
+  padding: $padding 40px;
   z-index: 99;
+  font-family: 'Switzer-Variable';
+  font-variation-settings: 'wght' 400;
+  text-transform: uppercase;
+  font-size: 20px;
+  @media only screen and (max-width: 720px) {
+    padding: $padding;
+  }
 }
 nav,
 ul {
@@ -114,11 +122,12 @@ button {
   position: relative;
   display: none;
   .brand {
-    background: firebrick;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
+    width: 100%;
+    text-align: center;
   }
   .hamburger {
     position: absolute;
@@ -133,14 +142,14 @@ button {
     top: 0;
     left: 0;
     background: var(--backgroundColor);
-    padding: calc(var(--headerHeight) + 25px) 25px;
+    padding: calc(var(--headerHeight) + $padding) $padding;
     z-index: 1;
     text-align: center;
   }
   .modeBtn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: $padding;
+    right: $padding;
     z-index: 4;
   }
   @media only screen and (max-width: 720px) {
