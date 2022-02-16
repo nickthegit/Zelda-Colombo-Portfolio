@@ -1,0 +1,30 @@
+:root {
+  // colors
+  --black: #000000;
+  --white: #ffffff;
+  // theme
+  --darkColor: var(--black);
+  --lightColor: var(--white);
+  --foregroundColor: var(--white);
+  --backgroundColor: var(--black);
+  // header
+  --headerHeight: 80px;
+}
+
+// ========================================
+// Colors
+// ========================================
+$black: #000000;
+$white: #ffffff;
+
+$primary: indianred;
+
+// ========================================
+// Screen sizes
+// ========================================
+$mobile: 480px;
+$tablet: 769px;
+$desktop: 1000px;
+$fullhd: 1384px;
+
+$headerHeight: 80px;
