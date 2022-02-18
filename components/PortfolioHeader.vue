@@ -77,20 +77,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$padding: 25px;
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  padding: $padding 40px;
+  padding: var(--genSpacing) 40px;
   z-index: 99;
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 400;
   text-transform: uppercase;
   font-size: 20px;
   @media only screen and (max-width: 720px) {
-    padding: $padding;
+    padding: var(--genSpacing);
   }
 }
 nav,
@@ -142,14 +141,14 @@ button {
     top: 0;
     left: 0;
     background: var(--backgroundColor);
-    padding: calc(var(--headerHeight) + $padding) $padding;
+    padding: calc(var(--headerHeight) + var(--genSpacing)) var(--genSpacing);
     z-index: 1;
     text-align: center;
   }
   .modeBtn {
     position: fixed;
-    bottom: $padding;
-    right: $padding;
+    bottom: var(--genSpacing);
+    right: var(--genSpacing);
     z-index: 4;
   }
   @media only screen and (max-width: 720px) {

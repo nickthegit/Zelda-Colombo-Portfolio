@@ -2,13 +2,24 @@
   // colors
   --black: #000000;
   --white: #ffffff;
+  --lightGrey: #a1a1a1;
+  --purple: #4924f5;
   // theme
   --darkColor: var(--black);
   --lightColor: var(--white);
+  --primaryColor: var(--purple);
   --foregroundColor: var(--white);
   --backgroundColor: var(--black);
   // header
   --headerHeight: 80px;
+  --genSpacing: 25px;
+  // font sizes
+  --xxl: 25vmin;
+  --xl: 18vmin;
+  --l: 16vmin;
+  --m: 14vmin;
+  --s: 12vmin;
+  --p: 5vmin;
 }
 
 // ========================================

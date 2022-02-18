@@ -1,7 +1,7 @@
 // theme
 .light-mode {
   --foregroundColor: var(--black);
-  --backgroundColor: var(--white);
+  --backgroundColor: var(--lightGrey);
 }
 body {
   background: var(--backgroundColor);
@@ -24,4 +24,16 @@ button {
 /* For hiding scoll bar */
 ::-webkit-scrollbar {
   display: none;
+}
+
+.section-slide {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  @media only screen and (min-width: 300px) and (max-width: 1180px) {
+    height: 100vh;
+    flex: auto;
+    display: block;
+  }
 }
