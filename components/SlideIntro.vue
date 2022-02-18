@@ -32,8 +32,8 @@ h1 {
   font-variation-settings: 'wght' 600;
   text-align: center;
   font-size: var(--xl);
-  letter-spacing: calc(var(--xl) / -100);
-  line-height: calc(var(--xl) * 0.95);
+  // letter-spacing: calc(var(--xl) / -100);
+  // line-height: calc(var(--xl) * 0.95);
 }
 h2 {
   position: absolute;
@@ -44,7 +44,7 @@ h2 {
   font-family: 'Boska-Variable';
   color: var(--primaryColor);
   font-size: var(--l);
-  letter-spacing: calc(var(--xl) / -50);
+  // letter-spacing: calc(var(--xl) / -50);
   text-align: center;
   white-space: nowrap;
 }
