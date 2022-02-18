@@ -56,6 +56,12 @@ export default {
       // reloadOnContextChange: true,
     })
     console.log('lmS', this.locomotiveScrollInstance)
+
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.locomotiveScrollInstance.update()
+      }, 3000)
+    })
   },
   destroyed() {
     this.locomotiveScrollInstance.destroy()
