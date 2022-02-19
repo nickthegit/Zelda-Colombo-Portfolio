@@ -1,12 +1,12 @@
 // mobile scroll fix
-// html.has-scroll-smooth {
-//   overflow: hidden;
-//   position: fixed;
-//   left: 0;
-//   right: 0;
-//   top: 0;
-//   bottom: 0;
-// }
+html.has-scroll-smooth {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 
 // theme
 .light-mode {
@@ -42,6 +42,7 @@ button {
   flex: 0 0 auto;
   position: relative;
   background: var(--backgroundColor);
+  overflow: hidden;
   // &.case-study-slide {
   //   background: transparent;
   // }

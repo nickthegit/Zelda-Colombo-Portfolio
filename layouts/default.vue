@@ -27,15 +27,15 @@ export default {
       direction: 'horizontal',
       gestureDirection: 'both',
       // TODO if smooth on tab and mobile turn .html hack on in global scss
-      // tablet: {
-      //   smooth: true,
-      //   direction: 'vertical',
-      // },
-      // smartphone: {
-      //   smooth: true,
-      //   direction: 'vertical',
-      // },
-      // reloadOnContextChange: true,
+      tablet: {
+        smooth: true,
+        direction: 'vertical',
+      },
+      smartphone: {
+        smooth: true,
+        direction: 'vertical',
+      },
+      reloadOnContextChange: true,
     })
 
     vm.locomotiveScrollInstance.on('scroll', ScrollTrigger.update)
@@ -144,7 +144,6 @@ export default {
             pinType: 'transform',
           },
         })
-
         tl.fromTo(
           article,
           {
