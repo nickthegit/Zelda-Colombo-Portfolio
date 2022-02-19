@@ -5,11 +5,12 @@
         <li class="brand">
           <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
         </li>
+        <!-- TODO scroll to position -->
         <li v-for="navItem in navItems" :key="navItem._id">
-          <nuxt-link :to="navItem.link">{{ navItem.name }}</nuxt-link>
+          <button @click="navigate(navItem.target)">{{ navItem.name }}</button>
         </li>
         <li>
-          <button @click="changeTheme">
+          <button class="btn" @click="changeTheme">
             <toggle-icon :mode="$colorMode.preference" />
           </button>
         </li>
@@ -26,10 +27,10 @@
           :key="navItem._id"
           @click="navOpen = false"
         >
-          <nuxt-link :to="navItem.link">{{ navItem.name }}</nuxt-link>
+          <button @click="navigate(navItem.target)">{{ navItem.name }}</button>
         </li>
       </ul>
-      <button v-if="navOpen" class="modeBtn" @click="changeTheme">
+      <button v-if="navOpen" class="modeBtn btn" @click="changeTheme">
         <toggle-icon :mode="$colorMode.preference" />
       </button>
     </nav>
@@ -38,6 +39,7 @@
 
 <script>
 export default {
+  props: ['locomotiveScrollInstance'],
   data() {
     return {
       navOpen: false,
@@ -45,16 +47,19 @@ export default {
         {
           name: 'About',
           link: '/about',
+          target: '#about',
           _id: 'LnqYw7SwwFTJmTDhLE',
         },
         {
           name: 'Work',
           link: '/work',
+          target: '#work',
           _id: 'eOaVAhg9p6',
         },
         {
           name: 'Contact',
           link: '/contact',
+          target: '#contact',
           _id: 'cY6p8Bbl',
         },
       ],
@@ -71,6 +76,9 @@ export default {
     },
     toggleNav() {
       this.navOpen = !this.navOpen
+    },
+    navigate(target) {
+      this.locomotiveScrollInstance.scrollTo(target)
     },
   },
 }
@@ -100,8 +108,12 @@ a {
   text-decoration: none;
 }
 button {
-  width: 40px;
   background: transparent;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.btn {
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

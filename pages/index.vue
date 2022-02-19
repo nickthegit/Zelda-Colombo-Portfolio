@@ -1,15 +1,15 @@
 <template>
   <main id="js-scroll">
-    <slide-intro />
-    <slide-about-1 />
+    <slide-intro id="home" />
+    <slide-about-1 id="about" />
     <slide-about-2 />
-    <slide-work />
+    <slide-work id="work" />
     <slide-case-study />
     <slide-case-study />
     <slide-case-study />
     <slide-case-study />
     <slide-more-work />
-    <slide-contact />
+    <slide-contact id="contact" />
   </main>
 </template>
 
@@ -35,36 +35,6 @@ export default {
     return {
       locomotiveScrollInstance: null,
     }
-  },
-  mounted() {
-    // const h1 = this.$el.querySelector('h1')
-    // gsap.to(h1, { y: 400, duration: 4 })
-
-    this.locomotiveScrollInstance = new this.LocomotiveScroll({
-      el: this.$el,
-      smooth: true,
-      direction: 'horizontal',
-      gestureDirection: 'both',
-      tablet: {
-        smooth: true,
-        direction: 'vertical',
-      },
-      smartphone: {
-        smooth: true,
-        direction: 'vertical',
-      },
-      // reloadOnContextChange: true,
-    })
-    console.log('lmS', this.locomotiveScrollInstance)
-
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.locomotiveScrollInstance.update()
-      }, 3000)
-    })
-  },
-  destroyed() {
-    this.locomotiveScrollInstance.destroy()
   },
 }
 </script>

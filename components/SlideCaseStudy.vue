@@ -21,6 +21,9 @@ article {
   height: 100%;
   position: relative;
   padding: calc(var(--headerHeight) + var(--headerHeight));
+  @media screen and (max-width: 600px) {
+    padding: var(--genSpacing);
+  }
 }
 a {
   width: 100%;
@@ -41,6 +44,9 @@ a {
     height: 100%;
     object-fit: contain;
   }
+  @media screen and (max-width: 600px) {
+    height: auto;
+  }
 }
 h2 {
   padding-top: var(--genSpacing);
@@ -49,7 +55,7 @@ h2 {
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 400;
   text-align: center;
-  font-size: 3.5vmin;
-  letter-spacing: -0.035vmin;
+  font-size: var(--p);
+  // letter-spacing: -0.035vmin;
 }
 </style>

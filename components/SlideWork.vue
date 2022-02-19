@@ -20,6 +20,9 @@ article {
   align-items: center;
   justify-content: center;
   padding-bottom: var(--headerHeight);
+  @media screen and (max-width: 600px) {
+    padding: var(--genSpacing);
+  }
 }
 h2 {
   position: relative;
@@ -27,7 +30,7 @@ h2 {
   font-family: 'Boska-Variable';
   font-variation-settings: 'wght' 300;
   text-align: center;
-  font-size: 25vmin;
+  font-size: var(--xxl);
   letter-spacing: -0.25vmin;
 }
 </style>

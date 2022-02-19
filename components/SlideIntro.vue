@@ -14,6 +14,7 @@ export default {}
 <style lang="scss" scoped>
 section {
   // background: salmon;
+  height: calc(100vh - 80px);
   padding: 0 var(--headerHeight) var(--headerHeight) var(--headerHeight);
 }
 article {

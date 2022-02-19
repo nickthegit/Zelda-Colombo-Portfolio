@@ -20,6 +20,9 @@ article {
   display: flex;
   flex-direction: column;
   padding: 40px;
+  @media screen and (max-width: 600px) {
+    padding: var(--headerHeight) var(--genSpacing);
+  }
 }
 a {
   text-decoration: none;
@@ -27,13 +30,15 @@ a {
 h3,
 h4 {
   text-align: left;
-  font-size: 12vmin;
-  letter-spacing: -0.12vmin;
-  line-height: 12vmin;
+  font-size: var(--s);
+  // letter-spacing: -0.12vmin;
+  // line-height: 12vmin;
+  margin-bottom: var(--genSpacing);
 }
 h3 {
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 500;
+  word-break: break-word;
 }
 h4 {
   font-family: 'Boska-Variable';

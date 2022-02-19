@@ -21,6 +21,12 @@
   --s: 12vmin;
   --p: 5vmin;
 }
+@media screen and (max-width: 600px) {
+  :root {
+    --m: 11vmin;
+    --p: 20px;
+  }
+}
 
 // ========================================
 // Colors

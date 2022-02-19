@@ -1,12 +1,10 @@
 <template>
   <section class="section-slide" data-scroll-section>
     <article>
-      <h3>
-        Web Design <br />
-        Digital Experience <br />
-        Creative Conception <br />
-        Graphic Design <br />
-      </h3>
+      <h3>Web Design</h3>
+      <h3>Digital Experience</h3>
+      <h3>Creative Conception</h3>
+      <h3>Graphic Design</h3>
       <p>
         Web design, User interface/experience, Digital experience, Graphic
         design, editorial design, identity system, Retail & Brand activation,
@@ -26,14 +24,20 @@ article {
   display: flex;
   flex-direction: column;
   padding: 40px;
+  @media screen and (max-width: 600px) {
+    padding: var(--genSpacing);
+  }
 }
 h3 {
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 600;
   text-align: left;
-  font-size: 14vmin;
-  letter-spacing: -0.14vmin;
-  line-height: 13.5vmin;
+  font-size: var(--m);
+  // letter-spacing: -0.14vmin;
+  // line-height: 13.5vmin;
+  @media screen and (max-width: 600px) {
+    margin-bottom: var(--genSpacing);
+  }
 }
 p {
   width: 100%;
@@ -42,9 +46,13 @@ p {
   font-family: 'Boska-Variable';
   font-variation-settings: 'wght' 400;
   text-align: left;
-  font-size: 5vmin;
-  letter-spacing: -0.05vmin;
-  line-height: 5vmin;
+  font-size: var(--p);
+  // letter-spacing: -0.05vmin;
+  // line-height: 5vmin;
   white-space: normal;
+  @media screen and (max-width: 600px) {
+    margin-top: 0;
+    max-width: 90%;
+  }
 }
 </style>
