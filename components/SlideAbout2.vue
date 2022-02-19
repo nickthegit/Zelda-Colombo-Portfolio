@@ -1,16 +1,18 @@
 <template>
-  <section class="section-slide" data-scroll-section>
-    <article>
-      <h3>Web Design</h3>
-      <h3>Digital Experience</h3>
-      <h3>Creative Conception</h3>
-      <h3>Graphic Design</h3>
-      <p>
-        Web design, User interface/experience, Digital experience, Graphic
-        design, editorial design, identity system, Retail & Brand activation,
-        concept research, & design development.
-      </p>
-    </article>
+  <section class="section-slide extended" data-scroll-section>
+    <div class="pin">
+      <article>
+        <h3>Web Design</h3>
+        <h3>Digital Experience</h3>
+        <h3>Creative Conception</h3>
+        <h3>Graphic Design</h3>
+        <p>
+          Web design, User interface/experience, Digital experience, Graphic
+          design, editorial design, identity system, Retail & Brand activation,
+          concept research, & design development.
+        </p>
+      </article>
+    </div>
   </section>
 </template>
 
@@ -20,15 +22,16 @@ export default {}
 
 <style lang="scss" scoped>
 article {
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 40px;
   @media screen and (max-width: 600px) {
-    padding: var(--genSpacing);
+    padding: var(--headerHeight) var(--genSpacing);
   }
 }
 h3 {
+  width: 100%;
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 600;
   text-align: left;

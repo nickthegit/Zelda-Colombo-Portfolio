@@ -1,13 +1,15 @@
 <template>
-  <section class="section-slide" data-scroll-section>
-    <article>
-      <nuxt-link to="#">
-        <div class="feature-image">
-          <img src="https://via.placeholder.com/1920x1080" alt="" />
-        </div>
-        <h2>Client — title of project</h2>
-      </nuxt-link>
-    </article>
+  <section class="section-slide case-study-slide extended" data-scroll-section>
+    <div class="pin">
+      <article>
+        <nuxt-link to="#">
+          <div class="feature-image">
+            <img src="https://via.placeholder.com/1920x1080" alt="" />
+          </div>
+          <h2>Client — title of project</h2>
+        </nuxt-link>
+      </article>
+    </div>
   </section>
 </template>
 
@@ -17,10 +19,10 @@ export default {}
 
 <style lang="scss" scoped>
 article {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: calc(100vh - 80px);
   position: relative;
-  padding: calc(var(--headerHeight) + var(--headerHeight));
+  padding: var(--headerHeight) calc(var(--headerHeight) + var(--headerHeight));
   @media screen and (max-width: 600px) {
     padding: var(--genSpacing);
   }
@@ -56,6 +58,7 @@ h2 {
   font-variation-settings: 'wght' 400;
   text-align: center;
   font-size: var(--p);
+  // flex-grow: 1;
   // letter-spacing: -0.035vmin;
 }
 </style>

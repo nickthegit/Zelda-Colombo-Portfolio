@@ -1,30 +1,35 @@
 <template>
-  <section class="section-slide" data-scroll-section>
-    <article>
-      <h3>Teamplayer</h3>
-      <h3>Work with ethics</h3>
-      <h3>Always learning</h3>
-      <h3>Keen eye for details</h3>
-      <h3>Keep on playing...</h3>
-    </article>
+  <section class="section-slide extended" data-scroll-section>
+    <div class="pin">
+      <article>
+        <h3>Teamplayer</h3>
+        <h3>Work with ethics</h3>
+        <h3>Always learning</h3>
+        <h3>Keen eye for details</h3>
+        <h3>Keep on playing...</h3>
+      </article>
+    </div>
   </section>
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {},
+}
 </script>
 
 <style lang="scss" scoped>
 article {
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 40px;
   @media screen and (max-width: 600px) {
-    padding: var(--genSpacing);
+    padding: var(--headerHeight) var(--genSpacing);
   }
 }
 h3 {
+  width: 100%;
   font-family: 'Switzer-Variable';
   font-variation-settings: 'wght' 600;
   text-align: left;

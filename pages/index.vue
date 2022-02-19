@@ -16,14 +16,9 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// import { PixiPlugin } from "gsap/PixiPlugin.js";
-// import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
-
-// gsap.registerPlugin(PixiPlugin, MotionPathPlugin);
-// ```
-
-// if client only
+gsap.registerPlugin(ScrollTrigger)
 // ```
 // if (process.client) {
 //   gsap.registerPlugin(MorphSVGPlugin);
@@ -35,6 +30,29 @@ export default {
     return {
       locomotiveScrollInstance: null,
     }
+  },
+  mounted() {
+    // const dave = ScrollTrigger.create({
+    //   trigger: '.pin',
+    //   start: 'top top',
+    //   horizontal: true,
+    //   scrub: true,
+    //   scroller: '#js-scroll',
+    //   // endTrigger: "#otherID",
+    //   end: 'bottom 50%+=100px',
+    //   onToggle: (self) => console.log('toggled, isActive:', self.isActive),
+    //   onUpdate: (self) => {
+    //     console.log(
+    //       'progress:',
+    //       self.progress.toFixed(3),
+    //       'direction:',
+    //       self.direction,
+    //       'velocity',
+    //       self.getVelocity()
+    //     )
+    //   },
+    // })
+    // console.log(dave)
   },
 }
 </script>

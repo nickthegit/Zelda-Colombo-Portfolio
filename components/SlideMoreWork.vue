@@ -1,10 +1,12 @@
 <template>
-  <section class="section-slide" data-scroll-section>
-    <article>
-      <nuxt-link to="#">
-        <h2>Some <br />more stuff</h2>
-      </nuxt-link>
-    </article>
+  <section class="section-slide extended" data-scroll-section>
+    <div class="pin">
+      <article>
+        <nuxt-link to="#">
+          <h2>Some <br />more stuff</h2>
+        </nuxt-link>
+      </article>
+    </div>
   </section>
 </template>
 
@@ -14,8 +16,8 @@ export default {}
 
 <style lang="scss" scoped>
 article {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: calc(100vh - 80px);
   position: relative;
   // background: seagreen;
   display: flex;
