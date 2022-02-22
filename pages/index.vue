@@ -14,15 +14,15 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// // eslint-disable-next-line no-unused-vars
+// import { gsap } from 'gsap'
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
-// ```
-// if (process.client) {
-//   gsap.registerPlugin(MorphSVGPlugin);
-// }
+// gsap.registerPlugin(ScrollTrigger)
+// // ```
+// // if (process.client) {
+// //   gsap.registerPlugin(MorphSVGPlugin);
+// // }
 
 export default {
   name: 'IndexPage',
@@ -31,29 +31,7 @@ export default {
       locomotiveScrollInstance: null,
     }
   },
-  mounted() {
-    // const dave = ScrollTrigger.create({
-    //   trigger: '.pin',
-    //   start: 'top top',
-    //   horizontal: true,
-    //   scrub: true,
-    //   scroller: '#js-scroll',
-    //   // endTrigger: "#otherID",
-    //   end: 'bottom 50%+=100px',
-    //   onToggle: (self) => console.log('toggled, isActive:', self.isActive),
-    //   onUpdate: (self) => {
-    //     console.log(
-    //       'progress:',
-    //       self.progress.toFixed(3),
-    //       'direction:',
-    //       self.direction,
-    //       'velocity',
-    //       self.getVelocity()
-    //     )
-    //   },
-    // })
-    // console.log(dave)
-  },
+  mounted() {},
 }
 </script>
 <style lang="scss" scoped>

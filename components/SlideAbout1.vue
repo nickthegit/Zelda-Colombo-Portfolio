@@ -13,6 +13,12 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+import { CustomEase } from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
   mounted() {},
 }
