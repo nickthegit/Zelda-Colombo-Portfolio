@@ -1,15 +1,15 @@
 <template>
   <main id="js-scroll">
-    <slide-intro id="home" />
-    <slide-about-1 id="about" />
-    <slide-about-2 />
-    <slide-work id="work" />
-    <slide-case-study />
-    <slide-case-study />
-    <slide-case-study />
-    <slide-case-study />
-    <slide-more-work />
-    <slide-contact id="contact" />
+    <slide-intro class="section-home" />
+    <slide-about-1 class="section-about" />
+    <slide-about-2 class="section-about" />
+    <slide-work class="section-work" />
+    <slide-case-study class="section-work" />
+    <slide-case-study class="section-work" />
+    <slide-case-study class="section-work" />
+    <slide-case-study class="section-work" />
+    <slide-more-work class="section-work" />
+    <slide-contact class="section-contact" />
   </main>
 </template>
 

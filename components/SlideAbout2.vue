@@ -1,7 +1,7 @@
 <template>
   <section class="section-slide extended" data-scroll-section>
     <div class="pin">
-      <article>
+      <article class="about-heading">
         <h3>Web Design</h3>
         <h3>Digital Experience</h3>
         <h3>Creative Conception</h3>

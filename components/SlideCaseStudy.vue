@@ -1,7 +1,7 @@
 <template>
   <section class="section-slide case-study-slide extended" data-scroll-section>
     <div class="pin">
-      <article>
+      <article class="case-study-item">
         <nuxt-link to="#">
           <div class="feature-image">
             <img src="https://via.placeholder.com/1920x1080" alt="" />

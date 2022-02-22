@@ -1,7 +1,7 @@
 <template>
   <section class="section-slide extended" data-scroll-section>
     <div class="pin">
-      <article>
+      <article class="about-heading">
         <h3>Teamplayer</h3>
         <h3>Work with ethics</h3>
         <h3>Always learning</h3>
