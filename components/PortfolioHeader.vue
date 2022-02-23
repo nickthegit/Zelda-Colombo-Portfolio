@@ -5,7 +5,6 @@
         <li class="brand">
           <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
         </li>
-        <!-- TODO scroll to position -->
         <li v-for="navItem in navItems" :key="navItem._id">
           <button @click="navigate(navItem.target)">{{ navItem.name }}</button>
         </li>

@@ -11,61 +11,12 @@ import { CustomEase } from 'gsap/CustomEase'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// import locomotive from '~/mixins/locomotive.js'
-
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 
 export default {
-  // mixins: [locomotive],
-  data() {
-    return {
-      locomotiveScrollInstance: null,
-      navSectionActive: '',
-    }
-  },
-  head() {
-    return {
-      bodyAttrs: {
-        class: this.navSectionActive,
-      },
-    }
-  },
   mounted() {
-    const vm = this
-
     const elements = this.$el.querySelectorAll('.section-slide .pin')
 
-    const workSection = this.$el.querySelector('.section-work')
-    const aboutSection = this.$el.querySelector('.section-about')
-    const contactSection = this.$el.querySelector('.section-contact')
-    const homeSection = this.$el.querySelector('.section-home')
-
-    // functions
-    function updateSectionClass(el, section) {
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'left right',
-        scrub: true,
-        horizontal: true,
-        invalidateOnRefresh: true,
-        onToggle: (self) => {
-          // console.log('toggled, isActive:', self.isActive)
-          if (self.isActive) {
-            vm.navSectionActive = section
-          }
-        },
-        // onUpdate: (self) => {
-        //   console.log(
-        //     'progress:',
-        //     self.progress.toFixed(3),
-        //     'direction:',
-        //     self.direction,
-        //     'velocity',
-        //     self.getVelocity()
-        //   )
-        // },
-      })
-    }
     function animateText(element, selector, endPercent) {
       const heading = element.querySelectorAll(selector)
 
@@ -101,11 +52,6 @@ export default {
         )
       }
     }
-
-    updateSectionClass(homeSection, 'home')
-    updateSectionClass(aboutSection, 'about')
-    updateSectionClass(workSection, 'work')
-    updateSectionClass(contactSection, 'contact')
 
     this.$nextTick(() => {
       setTimeout(() => {
@@ -150,8 +96,6 @@ export default {
             'start'
           )
         })
-
-        this.lmS.update()
       }, 300)
     })
   },

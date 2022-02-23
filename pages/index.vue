@@ -1,40 +1,76 @@
 <template>
   <main id="js-scroll">
-    <slide-intro id="home" class="section-home" />
-    <slide-about-1 id="about" class="section-about" />
-    <slide-about-2 class="section-about" />
-    <slide-work id="work" class="section-work" />
-    <slide-case-study class="section-work" />
-    <slide-case-study class="section-work" />
-    <slide-case-study class="section-work" />
-    <slide-case-study class="section-work" />
-    <slide-more-work class="section-work" />
-    <slide-contact id="contact" class="section-contact" />
+    <slide-intro id="home" data-nav-section="home" />
+    <slide-about-1 id="about" data-nav-section="about" />
+    <slide-about-2 data-nav-section="about" />
+    <slide-work id="work" data-nav-section="work" />
+    <slide-case-study data-nav-section="work" />
+    <slide-case-study data-nav-section="work" />
+    <slide-case-study data-nav-section="work" />
+    <slide-case-study data-nav-section="work" />
+    <slide-more-work data-nav-section="work" />
+    <slide-contact id="contact" data-nav-section="contact" />
   </main>
 </template>
 
 <script>
-// // eslint-disable-next-line no-unused-vars
-// import { gsap } from 'gsap'
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-// gsap.registerPlugin(ScrollTrigger)
-// // ```
-// // if (process.client) {
-// //   gsap.registerPlugin(MorphSVGPlugin);
-// // }
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import locomotive from '~/mixins/locomotive.js'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
   name: 'IndexPage',
   mixins: [locomotive],
   data() {
     return {
-      locomotiveScrollInstance: null,
+      navSectionActive: '',
     }
   },
-  mounted() {},
+  head() {
+    return {
+      bodyAttrs: {
+        class: this.navSectionActive,
+      },
+    }
+  },
+  mounted() {
+    const vm = this
+    // functions
+    const navSections = this.$el.querySelectorAll('.section-slide')
+
+    console.log(navSections)
+
+    navSections.forEach((section) => {
+      console.log('section', section.dataset.navSection)
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'left right',
+        scrub: true,
+        horizontal: true,
+        invalidateOnRefresh: true,
+        onToggle: (self) => {
+          // console.log('toggled, isActive:', self.isActive)
+          if (self.isActive) {
+            vm.navSectionActive = section.dataset.navSection
+          }
+        },
+        // onUpdate: (self) => {
+        //   console.log(
+        //     'progress:',
+        //     self.progress.toFixed(3),
+        //     'direction:',
+        //     self.direction,
+        //     'velocity',
+        //     self.getVelocity()
+        //   )
+        // },
+      })
+    })
+  },
 }
 </script>
 <style lang="scss" scoped>
