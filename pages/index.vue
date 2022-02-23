@@ -37,8 +37,13 @@ export default {
     }
   },
   mounted() {
-    this.pinSections()
     this.updateNavSections()
+
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.pinSections()
+      }, 300)
+    })
   },
   methods: {
     updateNavSections() {
