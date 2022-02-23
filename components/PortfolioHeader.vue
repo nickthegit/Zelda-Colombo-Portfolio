@@ -39,7 +39,12 @@
 
 <script>
 export default {
-  props: ['locomotiveScrollInstance'],
+  props: {
+    lmS: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
       navOpen: false,
@@ -78,7 +83,7 @@ export default {
       this.navOpen = !this.navOpen
     },
     navigate(target) {
-      this.locomotiveScrollInstance.scrollTo(target)
+      this.$locoScroll.scrollTo(target)
     },
   },
 }

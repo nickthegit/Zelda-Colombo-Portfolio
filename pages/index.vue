@@ -1,15 +1,15 @@
 <template>
   <main id="js-scroll">
-    <slide-intro class="section-home" />
-    <slide-about-1 class="section-about" />
+    <slide-intro id="home" class="section-home" />
+    <slide-about-1 id="about" class="section-about" />
     <slide-about-2 class="section-about" />
-    <slide-work class="section-work" />
+    <slide-work id="work" class="section-work" />
     <slide-case-study class="section-work" />
     <slide-case-study class="section-work" />
     <slide-case-study class="section-work" />
     <slide-case-study class="section-work" />
     <slide-more-work class="section-work" />
-    <slide-contact class="section-contact" />
+    <slide-contact id="contact" class="section-contact" />
   </main>
 </template>
 
@@ -24,8 +24,11 @@
 // //   gsap.registerPlugin(MorphSVGPlugin);
 // // }
 
+import locomotive from '~/mixins/locomotive.js'
+
 export default {
   name: 'IndexPage',
+  mixins: [locomotive],
   data() {
     return {
       locomotiveScrollInstance: null,

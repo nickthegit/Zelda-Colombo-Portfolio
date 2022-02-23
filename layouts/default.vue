@@ -1,6 +1,6 @@
 <template>
   <div>
-    <portfolio-header :locomotive-scroll-instance="locomotiveScrollInstance" />
+    <portfolio-header />
     <Nuxt />
   </div>
 </template>
@@ -11,8 +11,12 @@ import { CustomEase } from 'gsap/CustomEase'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+// import locomotive from '~/mixins/locomotive.js'
+
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
+
 export default {
+  // mixins: [locomotive],
   data() {
     return {
       locomotiveScrollInstance: null,
@@ -29,58 +33,12 @@ export default {
   mounted() {
     const vm = this
 
-    const scroller = this.$el.querySelector('#js-scroll')
     const elements = this.$el.querySelectorAll('.section-slide .pin')
 
     const workSection = this.$el.querySelector('.section-work')
     const aboutSection = this.$el.querySelector('.section-about')
     const contactSection = this.$el.querySelector('.section-contact')
     const homeSection = this.$el.querySelector('.section-home')
-
-    vm.locomotiveScrollInstance = new vm.LocomotiveScroll({
-      el: scroller,
-      smooth: true,
-      direction: 'horizontal',
-      gestureDirection: 'both',
-      // TODO if smooth on tab and mobile turn .html hack on in global scss
-      tablet: {
-        smooth: true,
-        direction: 'vertical',
-      },
-      smartphone: {
-        smooth: true,
-        direction: 'vertical',
-      },
-      reloadOnContextChange: true,
-    })
-
-    vm.locomotiveScrollInstance.on('scroll', ScrollTrigger.update)
-
-    // const isDevice =
-    //   vm.locomotiveScrollInstance.options.isMobile ||
-    //   vm.locomotiveScrollInstance.options.isTablet
-
-    ScrollTrigger.scrollerProxy(scroller, {
-      scrollLeft(value) {
-        return arguments.length
-          ? vm.locomotiveScrollInstance.scrollTo(value, 0, 0)
-          : vm.locomotiveScrollInstance.scroll.instance.scroll.x
-      },
-
-      getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        }
-      },
-      pinType: scroller.style.transform ? 'transform' : 'fixed',
-    })
-
-    ScrollTrigger.defaults({
-      scroller,
-    })
 
     // functions
     function updateSectionClass(el, section) {
@@ -149,17 +107,12 @@ export default {
     updateSectionClass(workSection, 'work')
     updateSectionClass(contactSection, 'contact')
 
-    ScrollTrigger.addEventListener('refresh', () =>
-      vm.locomotiveScrollInstance.update()
-    )
-    ScrollTrigger.refresh()
-
     this.$nextTick(() => {
       setTimeout(() => {
         elements.forEach((element) => {
           const article = element.querySelector('article')
 
-          console.log('DAVE')
+          // console.log('DAVE', this.$locoScroll)
 
           // about headings
           animateText(element, 'article.about-heading h3', 80)
@@ -198,15 +151,10 @@ export default {
           )
         })
 
-        this.locomotiveScrollInstance.update()
+        this.lmS.update()
       }, 300)
     })
   },
-  destroyed() {
-    this.locomotiveScrollInstance.destroy()
-  },
-  methods: {
-    locoScrollSetup() {},
-  },
+  methods: {},
 }
 </script>
