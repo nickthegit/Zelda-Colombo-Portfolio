@@ -38,7 +38,12 @@ export default {
     }
   },
   watchQuery(newQuery, oldQuery) {
-    this.$locoScroll.scrollTo(`#${newQuery.route}`)
+    console.log(newQuery)
+    if (Object.entries(newQuery).length === 0) {
+      this.$locoScroll.scrollTo(`#home`)
+    } else {
+      this.$locoScroll.scrollTo(`#${newQuery.route}`)
+    }
   },
   mounted() {
     this.updateNavSections()

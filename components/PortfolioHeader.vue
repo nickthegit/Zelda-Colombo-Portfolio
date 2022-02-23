@@ -3,7 +3,7 @@
     <nav id="main-nav">
       <ul>
         <li class="brand">
-          <nuxt-link to="/?route=home">ZELDA COLOMBO</nuxt-link>
+          <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
         </li>
         <li v-for="navItem in navItems" :key="navItem._id">
           <nuxt-link
