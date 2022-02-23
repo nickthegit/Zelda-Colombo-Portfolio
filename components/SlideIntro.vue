@@ -60,7 +60,7 @@ export default {
             from: 'random',
           },
         },
-        '+=2'
+        '+=1.25'
       )
       tl.to(
         digital,

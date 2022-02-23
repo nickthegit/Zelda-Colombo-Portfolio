@@ -149,57 +149,64 @@ export default {
     updateSectionClass(workSection, 'work')
     updateSectionClass(contactSection, 'contact')
 
-    elements.forEach((element) => {
-      const article = element.querySelector('article')
-
-      // about headings
-      animateText(element, 'article.about-heading h3', 80)
-      // case study
-      animateText(element, 'article.case-study-item h2', 75)
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: element,
-          start: () => 'left left',
-          end: () => '+=100%',
-          pin: true,
-          // anticipatePin: 1,
-          scrub: true,
-          horizontal: true,
-          invalidateOnRefresh: true,
-          // markers: true,
-          pinType: 'transform',
-        },
-      })
-      tl.fromTo(
-        article,
-        {
-          scale: 1,
-          autoAlpha: 1,
-        },
-        {
-          scale: 0.95,
-          autoAlpha: 0.75,
-          x: -500,
-          duration: 5,
-          delay: 0.5,
-          ease: 'power2.in',
-        },
-        'start'
-      )
-    })
-
     ScrollTrigger.addEventListener('refresh', () =>
       vm.locomotiveScrollInstance.update()
     )
     ScrollTrigger.refresh()
 
     this.$nextTick(() => {
-      this.locomotiveScrollInstance.update()
+      setTimeout(() => {
+        elements.forEach((element) => {
+          const article = element.querySelector('article')
+
+          console.log('DAVE')
+
+          // about headings
+          animateText(element, 'article.about-heading h3', 80)
+          // case study
+          animateText(element, 'article.case-study-item h2', 75)
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: () => 'left left',
+              end: () => '+=100%',
+              pin: true,
+              // anticipatePin: 1,
+              scrub: true,
+              horizontal: true,
+              invalidateOnRefresh: true,
+              // markers: true,
+              pinType: 'transform',
+            },
+          })
+          tl.fromTo(
+            article,
+            {
+              scale: 1,
+              autoAlpha: 1,
+            },
+            {
+              scale: 0.95,
+              autoAlpha: 0.75,
+              x: -500,
+              duration: 5,
+              delay: 0.5,
+              ease: 'power2.in',
+            },
+            'start'
+          )
+        })
+
+        this.locomotiveScrollInstance.update()
+      }, 300)
     })
   },
   destroyed() {
     this.locomotiveScrollInstance.destroy()
+  },
+  methods: {
+    locoScrollSetup() {},
   },
 }
 </script>
