@@ -3,10 +3,14 @@
     <nav id="main-nav">
       <ul>
         <li class="brand">
-          <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
+          <nuxt-link to="/?route=home">ZELDA COLOMBO</nuxt-link>
         </li>
         <li v-for="navItem in navItems" :key="navItem._id">
-          <button @click="navigate(navItem.target)">{{ navItem.name }}</button>
+          <nuxt-link
+            :to="`/?route=${navItem.target}`"
+            @click="navigate(navItem.target)"
+            >{{ navItem.name }}</nuxt-link
+          >
         </li>
         <li>
           <button class="btn" @click="changeTheme">
@@ -38,12 +42,6 @@
 
 <script>
 export default {
-  props: {
-    lmS: {
-      type: Object,
-      default: null,
-    },
-  },
   data() {
     return {
       navOpen: false,
@@ -51,25 +49,27 @@ export default {
         {
           name: 'About',
           link: '/about',
-          target: '#about',
+          target: 'about',
           _id: 'LnqYw7SwwFTJmTDhLE',
         },
         {
           name: 'Work',
           link: '/work',
-          target: '#work',
+          target: 'work',
           _id: 'eOaVAhg9p6',
         },
         {
           name: 'Contact',
           link: '/contact',
-          target: '#contact',
+          target: 'contact',
           _id: 'cY6p8Bbl',
         },
       ],
     }
   },
-  mounted() {},
+  mounted() {
+    console.log(this)
+  },
   methods: {
     changeTheme() {
       if (this.$colorMode.preference === 'dark') {

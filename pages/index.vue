@@ -24,6 +24,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'IndexPage',
   mixins: [locomotive],
+
   data() {
     return {
       navSectionActive: '',
@@ -35,6 +36,9 @@ export default {
         class: this.navSectionActive,
       },
     }
+  },
+  watchQuery(newQuery, oldQuery) {
+    this.$locoScroll.scrollTo(`#${newQuery.route}`)
   },
   mounted() {
     this.updateNavSections()
