@@ -37,39 +37,80 @@ export default {
     }
   },
   mounted() {
-    const vm = this
-    // functions
-    const navSections = this.$el.querySelectorAll('.section-slide')
+    this.pinSections()
+    this.updateNavSections()
+  },
+  methods: {
+    updateNavSections() {
+      const vm = this
+      const navSections = this.$el.querySelectorAll('.section-slide')
+      navSections.forEach((section) => {
+        console.log('section', section.dataset.navSection)
 
-    console.log(navSections)
-
-    navSections.forEach((section) => {
-      console.log('section', section.dataset.navSection)
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'left right',
-        scrub: true,
-        horizontal: true,
-        invalidateOnRefresh: true,
-        onToggle: (self) => {
-          // console.log('toggled, isActive:', self.isActive)
-          if (self.isActive) {
-            vm.navSectionActive = section.dataset.navSection
-          }
-        },
-        // onUpdate: (self) => {
-        //   console.log(
-        //     'progress:',
-        //     self.progress.toFixed(3),
-        //     'direction:',
-        //     self.direction,
-        //     'velocity',
-        //     self.getVelocity()
-        //   )
-        // },
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'left right',
+          scrub: true,
+          horizontal: true,
+          invalidateOnRefresh: true,
+          onToggle: (self) => {
+            // console.log('toggled, isActive:', self.isActive)
+            if (self.isActive) {
+              vm.navSectionActive = section.dataset.navSection
+            }
+          },
+          // onUpdate: (self) => {
+          //   console.log(
+          //     'progress:',
+          //     self.progress.toFixed(3),
+          //     'direction:',
+          //     self.direction,
+          //     'velocity',
+          //     self.getVelocity()
+          //   )
+          // },
+        })
       })
-    })
+    },
+    pinSections() {
+      const elements = this.$el.querySelectorAll('.section-slide .pin')
+      elements.forEach((element) => {
+        const article = element.querySelector('article')
+
+        // console.log('DAVE', this.$locoScroll)
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: element,
+            start: () => 'left left',
+            end: () => '+=100%',
+            pin: true,
+            // anticipatePin: 1,
+            scrub: true,
+            horizontal: true,
+            invalidateOnRefresh: true,
+            // markers: true,
+            pinType: 'transform',
+          },
+        })
+        tl.fromTo(
+          article,
+          {
+            scale: 1,
+            autoAlpha: 1,
+          },
+          {
+            scale: 0.95,
+            autoAlpha: 0.75,
+            x: -500,
+            duration: 5,
+            delay: 0.5,
+            ease: 'power2.in',
+          },
+          'start'
+        )
+      })
+    },
   },
 }
 </script>
