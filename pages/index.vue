@@ -4,11 +4,15 @@
     <slide-about-1 id="about" data-nav-section="about" />
     <slide-about-2 data-nav-section="about" />
     <slide-work id="work" data-nav-section="work" />
-    <slide-case-study data-nav-section="work" />
-    <slide-case-study data-nav-section="work" />
-    <slide-case-study data-nav-section="work" />
-    <slide-case-study data-nav-section="work" />
-    <slide-more-work data-nav-section="work" />
+    <slide-case-study
+      v-for="caseStudy in caseStudies"
+      :key="caseStudy.name"
+      :name="caseStudy.name"
+      :title="caseStudy.title"
+      :client="caseStudy.client"
+      :feature-img="caseStudy.featureImg"
+      data-nav-section="work"
+    />
     <slide-contact id="contact" data-nav-section="contact" />
   </main>
 </template>
@@ -29,6 +33,29 @@ export default {
     return {
       navSectionActive: '',
       isScrolling: false,
+      caseStudies: [
+        {
+          name: 'renew-lab-store',
+          title: 'Renew Lab Store',
+          client: 'Converse',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802860/ZC/placeholder/grandclosing.jpg',
+        },
+        {
+          name: 'state-of-skate',
+          title: 'State of Skate',
+          client: 'StockX + TDM',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
+        },
+        {
+          name: 'excursions',
+          title: 'Excursions',
+          client: 'StockX',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/v1645802841/ZC/placeholder/excersions.svg',
+        },
+      ],
     }
   },
   head() {

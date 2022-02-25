@@ -4,9 +4,14 @@
       <article class="case-study-item">
         <nuxt-link to="#">
           <div class="feature-image">
-            <img src="https://via.placeholder.com/1920x1080" alt="" />
+            <img
+              :src="featureImg"
+              :alt="`${name} feature image - designed by Zelda Colombo`"
+            />
           </div>
-          <h2>Client — title of project</h2>
+          <h2>
+            <span v-if="client">{{ client }} — </span>{{ title }}
+          </h2>
         </nuxt-link>
       </article>
     </div>
@@ -21,6 +26,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
+  props: {
+    name: {
+      type: String,
+      default: null,
+    },
+    title: {
+      type: String,
+      default: 'title needed',
+    },
+    client: {
+      type: String,
+      default: null,
+    },
+    featureImg: {
+      type: String,
+      default: 'https://via.placeholder.com/1920x1080',
+    },
+  },
   mounted() {
     const heading = this.$el.querySelector('h2')
     const textSplit = new SplitText(heading, { type: 'chars' })

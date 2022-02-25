@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loader />
     <portfolio-header />
     <Nuxt />
   </div>

@@ -1,13 +1,19 @@
 export const state = () => ({
-  loco: {},
   homeNavItem: '',
+  loaded: false,
 })
 
 export const mutations = {
-  updateLoco(state) {
-    state.loco = state
-  },
   updateHomeNavItem(state, payload) {
     state.homeNavItem = payload
+  },
+  hasLoaded(state) {
+    state.loaded = true
+  },
+}
+
+export const getters = {
+  siteHasLoaded(state) {
+    return state.loaded
   },
 }

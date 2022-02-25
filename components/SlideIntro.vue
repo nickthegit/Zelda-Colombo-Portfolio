@@ -7,7 +7,7 @@
         <br />
         <span id="jobTitleDesigner">DESIGNER</span>
       </h1>
-      <h2>Zelda Colombo</h2>
+      <zelda-colombo />
     </article>
   </section>
 </template>
@@ -19,11 +19,24 @@ import { CustomEase } from 'gsap/CustomEase'
 
 gsap.registerPlugin(CustomEase, SplitText)
 export default {
+  computed: {
+    loaded() {
+      return this.$store.getters.siteHasLoaded
+    },
+  },
+  watch: {
+    loaded(newState, oldState) {
+      if (newState) {
+        this.jobTitleAnimation()
+      }
+    },
+  },
   mounted() {
-    this.jobTitleAnimation()
+    gsap.set('#jobTitle', { autoAlpha: 0 })
   },
   methods: {
     jobTitleAnimation() {
+      gsap.set('#jobTitle', { autoAlpha: 1 })
       const animationOptions = {
         duration: 1,
         autoAlpha: 0,
@@ -103,6 +116,7 @@ section {
   // background: salmon;
   height: calc(100vh - 80px);
   padding: 0 var(--headerHeight) var(--headerHeight) var(--headerHeight);
+  // background: sandybrown;
 }
 article {
   width: 100%;
@@ -123,19 +137,7 @@ h1 {
   // letter-spacing: calc(var(--xl) / -100);
   // line-height: calc(var(--xl) * 0.95);
 }
-h2 {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -55%);
-  font-family: 'Boska-Variable';
-  color: var(--primaryColor);
-  font-size: var(--l);
-  // letter-spacing: calc(var(--xl) / -50);
-  text-align: center;
-  white-space: nowrap;
-}
+
 #jobTitleDigital {
   width: 100%;
   position: absolute;
