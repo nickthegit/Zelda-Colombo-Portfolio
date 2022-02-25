@@ -17,11 +17,11 @@ lmS = new LocomotiveScroll({
   // TODO if smooth on tab and mobile turn .html hack on in global scss
   tablet: {
     smooth: true,
-    // direction: 'vertical',
+    direction: 'horizontal',
   },
   smartphone: {
     smooth: true,
-    // direction: 'vertical',
+    direction: 'horizontal',
   },
   reloadOnContextChange: true,
 })
