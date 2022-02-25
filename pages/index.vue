@@ -13,6 +13,7 @@
       :feature-img="caseStudy.featureImg"
       data-nav-section="work"
     />
+    <slide-more-work data-nav-section="work" />
     <slide-contact id="contact" data-nav-section="contact" />
   </main>
 </template>
