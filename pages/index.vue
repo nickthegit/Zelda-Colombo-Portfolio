@@ -191,12 +191,12 @@ main {
   align-items: center;
   flex-wrap: nowrap;
   padding-top: var(--headerHeight);
-  @media only screen and (min-width: 300px) and (max-width: 1180px) {
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
-    flex-direction: column;
-    overflow-x: hidden;
-  }
+  // @media only screen and (min-width: 300px) and (max-width: 1180px) {
+  //   width: 100%;
+  //   height: auto;
+  //   flex-wrap: wrap;
+  //   flex-direction: column;
+  //   overflow-x: hidden;
+  // }
 }
 </style>
