@@ -28,25 +28,42 @@ export default {
   data() {
     return {
       navSectionActive: '',
+      isScrolling: false,
     }
   },
   head() {
     return {
       bodyAttrs: {
         class: this.navSectionActive,
+        'data-nav-section': this.navSectionActive,
       },
     }
   },
   watchQuery(newQuery, oldQuery) {
     console.log(newQuery)
+    // if (
+    //   !document.querySelector('html').classList.contains('has-scroll-scrolling')
+    // ) {
     if (Object.entries(newQuery).length === 0) {
       this.$locoScroll.scrollTo(`#home`)
+      // gsap.to(this.$el, { scrollTo: ScrollTrigger.labelToScroll('#home') })
     } else {
       this.$locoScroll.scrollTo(`#${newQuery.route}`)
+      // gsap.to(this.$el, {scrollTo: ScrollTrigger.labelToScroll(`#${newQuery.route}`),})
     }
+    // }
   },
   mounted() {
     this.updateNavSections()
+
+    //  ScrollTrigger.addEventListener('scrollStart', () => {
+    //   this.isScrolling = true
+    //   console.log('scrolling started!', this.isScrolling)
+    // })
+    // ScrollTrigger.addEventListener('scrollEnd', () => {
+    //   this.isScrolling = false
+    //   console.log('scrolling ended!', this.isScrolling)
+    // })
 
     this.$nextTick(() => {
       setTimeout(() => {
@@ -59,7 +76,7 @@ export default {
       const vm = this
       const navSections = this.$el.querySelectorAll('.section-slide')
       navSections.forEach((section) => {
-        console.log('section', section.dataset.navSection)
+        // console.log('section', section.dataset.navSection)
 
         ScrollTrigger.create({
           trigger: section,
@@ -71,6 +88,16 @@ export default {
             // console.log('toggled, isActive:', self.isActive)
             if (self.isActive) {
               vm.navSectionActive = section.dataset.navSection
+              vm.$store.commit('updateHomeNavItem', section.dataset.navSection)
+              // vm.$route.query.route = section.dataset.navSection
+
+              // this.$router.push({
+              //   // path: '/',
+              //   query: {
+              //     route: section.dataset.navSection,
+              //   },
+              // })
+              // }
             }
           },
           // onUpdate: (self) => {

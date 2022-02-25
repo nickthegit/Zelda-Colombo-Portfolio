@@ -1,7 +1,7 @@
 export default {
   watch: {
     $route() {
-      console.log('route changed: ', this.$route)
+      // console.log('route changed: ', this.$route)
       this.$locoScroll.update()
     },
   },
@@ -9,12 +9,12 @@ export default {
     this.$nextTick(
       function () {
         this.$locoScroll.update()
-        console.log('mounted')
+        // console.log('mounted')
       }.bind(this)
     )
   },
   destroyed() {
-    console.log('destroy')
+    // console.log('destroy')
     this.$locoScroll.destroy()
     // window.removeEventListener('resize', this.onLmsResize)
   },

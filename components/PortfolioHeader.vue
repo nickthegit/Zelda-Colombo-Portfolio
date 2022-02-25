@@ -5,12 +5,14 @@
         <li class="brand">
           <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
         </li>
-        <li v-for="navItem in navItems" :key="navItem._id">
-          <nuxt-link
-            :to="`/?route=${navItem.target}`"
-            @click="navigate(navItem.target)"
-            >{{ navItem.name }}</nuxt-link
-          >
+        <li
+          v-for="navItem in navItems"
+          :key="navItem._id"
+          :class="navItem.target === $store.state.homeNavItem ? 'active' : ''"
+        >
+          <nuxt-link :to="`/?route=${navItem.target}`">{{
+            navItem.name
+          }}</nuxt-link>
         </li>
         <li>
           <button class="btn" @click="changeTheme">
@@ -28,9 +30,12 @@
         <li
           v-for="navItem in navItems"
           :key="navItem._id"
+          :class="navItem.target === $store.state.homeNavItem ? 'active' : ''"
           @click="navOpen = false"
         >
-          <button @click="navigate(navItem.target)">{{ navItem.name }}</button>
+          <nuxt-link :to="`/?route=${navItem.target}`">{{
+            navItem.name
+          }}</nuxt-link>
         </li>
       </ul>
       <button v-if="navOpen" class="modeBtn btn" @click="changeTheme">
@@ -41,6 +46,10 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 export default {
   data() {
     return {
@@ -68,7 +77,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this)
+    // console.log(this)
   },
   methods: {
     changeTheme() {
@@ -110,6 +119,13 @@ ul {
 }
 a {
   text-decoration: none;
+}
+li {
+  &.active {
+    a {
+      color: var(--primaryColor);
+    }
+  }
 }
 button {
   background: transparent;
@@ -156,7 +172,7 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    background: var(--backgroundColor);
+    // background: var(--backgroundColor);
     padding: calc(var(--headerHeight) + var(--genSpacing)) var(--genSpacing);
     z-index: 1;
     text-align: center;

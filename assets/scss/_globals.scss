@@ -16,7 +16,7 @@ html.has-scroll-smooth {
 body {
   background: var(--backgroundColor);
   color: var(--foregroundColor);
-  transition: background 0.3s ease-out, color 0.3s ease-out;
+  // transition: background 0.3s ease-out, color 0.3s ease-out;
 }
 
 a {
