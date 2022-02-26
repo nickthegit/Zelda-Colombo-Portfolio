@@ -1,7 +1,7 @@
 <template>
   <div>
-    <loader />
-    <portfolio-header />
+    <!-- <loader /> -->
+    <!-- <portfolio-header /> -->
     <Nuxt />
   </div>
 </template>
