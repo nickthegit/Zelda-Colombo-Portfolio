@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    // this.scrollAnimation()
+    this.scrollAnimation()
   },
   methods: {
     scrollAnimation() {
@@ -34,7 +34,7 @@ export default {
       const textSplit = new SplitText(heading, { type: 'chars' })
       const text = textSplit.chars
       if (text.length > 0) {
-        const animation = gsap.fromTo(
+        this.animation = gsap.fromTo(
           text,
           {
             autoAlpha: 0,
@@ -52,8 +52,6 @@ export default {
             },
           }
         )
-
-        return animation
       }
     },
   },

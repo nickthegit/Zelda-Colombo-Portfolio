@@ -31,6 +31,7 @@ export default {
     ScrollTrigger.defaults({ scroller })
 
     const h = window.innerHeight
+    const m = this.tlMultiplier
 
     // const sections = this.$el.querySelectorAll('section')
     const sectionWrap = this.$el.querySelectorAll('.section-wrapper')
@@ -57,7 +58,7 @@ export default {
           pin: true,
           pinSpacing: false,
           start: 'top top',
-          end: h * 8,
+          end: h * m,
           scrub: true,
           horizontal: false,
           markers: true,

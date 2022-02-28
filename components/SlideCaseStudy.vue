@@ -43,6 +43,19 @@ export default {
       type: String,
       default: 'https://via.placeholder.com/1920x1080',
     },
+    videoId: {
+      type: [String],
+      default: '',
+    },
+  },
+  computed: {
+    isVideo() {
+      if (this.videoId.length > 4) {
+        return true
+      } else {
+        return false
+      }
+    },
   },
   mounted() {
     const heading = this.$el.querySelector('h2')

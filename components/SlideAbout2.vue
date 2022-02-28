@@ -24,6 +24,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
+  data() {
+    return {
+      animation: null,
+    }
+  },
   mounted() {
     this.scrollAnimation()
   },
@@ -33,7 +38,7 @@ export default {
       const textSplit = new SplitText(heading, { type: 'chars' })
       const text = textSplit.chars
       if (text.length > 0) {
-        const animation = gsap.fromTo(
+        this.animation = gsap.fromTo(
           text,
           {
             autoAlpha: 0,
@@ -51,8 +56,6 @@ export default {
             },
           }
         )
-
-        return animation
       }
     },
   },

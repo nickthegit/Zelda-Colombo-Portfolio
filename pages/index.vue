@@ -1,11 +1,26 @@
 <template>
   <main>
-    <div class="scroll-wrapper"></div>
+    <div
+      class="scroll-wrapper"
+      :style="{ height: tlMultiplier * 100 + 'vh' }"
+    ></div>
     <div class="section-wrapper">
       <slide-intro id="sectionIntro" />
       <slide-about-1 id="sectionAbout1" ref="about1" class="slide" />
       <slide-about-2 id="sectionAbout2" ref="about2" class="slide" />
       <slide-work id="sectionWork" ref="work" class="slide" />
+      <slide-case-study-placeholder
+        v-for="caseStudy in caseStudies"
+        :key="caseStudy.name"
+        :ref="caseStudy.name"
+        :name="caseStudy.name"
+        :title="caseStudy.title"
+        :client="caseStudy.client"
+        :feature-img="caseStudy.featureImg"
+        :link="caseStudy.link"
+        :data-ref-name="caseStudy.name"
+        class="case-study-slide"
+      />
       <!-- <section id="sectionAbout1">My</section>
       <section id="sectionAbout2">Name</section>
       <section id="sectionWork">Is</section>
@@ -25,15 +40,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import scrollPin from '~/mixins/scrollPinMixin.js'
 import SlideAbout1 from '~/components/SlideAbout1.vue'
 import SlideWork from '~/components/SlideWork.vue'
+import SlideCaseStudyPlaceholder from '~/components/SlideCaseStudyPlaceholder.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
-  components: { SlideAbout1, SlideWork },
+  components: { SlideAbout1, SlideWork, SlideCaseStudyPlaceholder },
   name: 'IndexPage',
   mixins: [scrollPin],
   data() {
     return {
+      tlMultiplier: 24,
       navSectionActive: '',
       isScrolling: false,
       caseStudies: [
@@ -43,6 +60,7 @@ export default {
           client: 'Converse',
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802860/ZC/placeholder/grandclosing.jpg',
+          link: 'https://renewlabs.com',
         },
         {
           name: 'state-of-skate',
@@ -50,6 +68,7 @@ export default {
           client: 'StockX + TDM',
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
+          link: 'https://skatexsneakers.com',
         },
         {
           name: 'excursions',
@@ -57,6 +76,7 @@ export default {
           client: 'StockX',
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/v1645802841/ZC/placeholder/excersions.svg',
+          link: 'https://stockx.com/excursions/',
         },
       ],
     }
@@ -76,22 +96,19 @@ export default {
     animationTimeline() {
       const refs = this.$refs
 
-      console.log(refs.about1, 'refs.about1')
-
       const sectionWrap = this.$el.querySelector('.section-wrapper')
+      const caseStudies = this.$el.querySelectorAll('.case-study-slide')
 
-      // const caseStudies = this.$el.querySelectorAll('.sectionCaseStudy')
       const scrollModifier = 2
       const h = window.innerHeight
-      // const slides = this.$el.querySelectorAll('.slide')
-      // gsap.set(slides, { autoAlpha: 1 })
+      const m = this.tlMultiplier
+
       const tl = gsap.timeline({
-        // yes, we can add it to an entire timeline!
         scrollTrigger: {
           scroller: this.$el,
           trigger: sectionWrap,
           start: 'top top',
-          end: h * 8 - h,
+          end: h * m - h,
           scrub: true,
           markers: true,
         },
@@ -100,7 +117,7 @@ export default {
       tl.fromTo(
         '#sectionIntro',
         { x: 0, scale: 1 },
-        { x: '-101%', scale: 1, duration: scrollModifier }
+        { x: '-101%', scale: 1, ease: 'power3.in', duration: scrollModifier }
       )
       // * about1 In
       tl.fromTo(
@@ -108,56 +125,86 @@ export default {
         { x: '101%' },
         {
           x: 0,
+          ease: 'power3.out',
           duration: scrollModifier,
         },
-        `-=${scrollModifier}`
+        `-=${scrollModifier / 1.5}`
       )
       // * about animate
-      tl.call(() => refs.about1.scrollAnimation().play(), null, '<')
+      tl.add(refs.about1.animation, '<')
+      // * about 1 out
+      tl.to('#sectionAbout1', {
+        x: '-101%',
+        scale: 0.95,
+        autoAlpha: 0.2,
+        ease: 'power3.in',
+        duration: scrollModifier,
+      })
       // * about2 In
       tl.fromTo(
         '#sectionAbout2',
         { x: '101%' },
         {
           x: 0,
-          duration: scrollModifier,
-        },
-        `+=${scrollModifier / 2}`
-      )
-      // * about animate
-      tl.call(() => refs.about2.scrollAnimation().play(), null, '<')
-      // * about 1 out
-      tl.to(
-        '#sectionAbout1',
-        {
-          x: '-101%',
-          scale: 0.95,
-          autoAlpha: 0.8,
+          ease: 'power3.out',
           duration: scrollModifier,
         },
         `-=${scrollModifier / 1.5}`
       )
+      // * about animate
+      tl.add(refs.about2.animation, '<')
+      // * about 2 out
+      tl.to('#sectionAbout2', {
+        x: '-101%',
+        scale: 0.95,
+        autoAlpha: 0.2,
+        ease: 'power3.in',
+        duration: scrollModifier,
+      })
       // * work In
       tl.fromTo(
         '#sectionWork',
         { x: '101%' },
         {
           x: 0,
-          duration: scrollModifier,
-        },
-        `+=${scrollModifier / 2}`
-      )
-      // * about 2 out
-      tl.to(
-        '#sectionAbout2',
-        {
-          x: '-101%',
-          scale: 0.95,
-          autoAlpha: 0.8,
+          ease: 'power3.out',
           duration: scrollModifier,
         },
         `-=${scrollModifier / 1.5}`
       )
+
+      // * work 2 out
+      tl.to('#sectionWork', {
+        x: '-101%',
+        scale: 0.95,
+        autoAlpha: 0.2,
+        ease: 'power3.in',
+        duration: scrollModifier,
+      })
+
+      // * case studies in
+      caseStudies.forEach((caseStudy) => {
+        tl.fromTo(
+          caseStudy,
+          { x: '101%' },
+          {
+            x: 0,
+            ease: 'power3.out',
+            duration: scrollModifier,
+          },
+          `-=${scrollModifier / 1.5}`
+        )
+
+        tl.add(refs[caseStudy.dataset.refName][0].animation, '<')
+        // * work 2 out
+        tl.to(caseStudy, {
+          x: '-101%',
+          scale: 0.95,
+          autoAlpha: 0.2,
+          ease: 'power3.in',
+          duration: scrollModifier,
+        })
+      })
     },
   },
 }
@@ -185,7 +232,7 @@ h1 {
 }
 .scroll-wrapper {
   width: 100vw;
-  height: 800vh;
+  height: 1200vh;
   position: relative;
   top: 0;
   left: 0;
