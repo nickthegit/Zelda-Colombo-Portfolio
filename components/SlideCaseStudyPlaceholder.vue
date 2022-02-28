@@ -4,13 +4,11 @@
       <div class="feature-image">
         <intersect @enter="videoIn" @leave="videoOut">
           <div v-if="isVideo" class="video"></div>
-
-          <img
-            v-else
-            :src="featureImg"
-            :alt="`${name} feature image - designed by Zelda Colombo`"
-          />
         </intersect>
+        <img
+          :src="featureImg"
+          :alt="`${name} feature image - designed by Zelda Colombo`"
+        />
       </div>
       <h2>
         <a :href="link" target="_blank" rel="noopener noreferrer">
@@ -202,6 +200,12 @@ a {
   }
   @media screen and (max-width: 600px) {
     height: auto;
+  }
+  img {
+    z-index: 1;
+  }
+  .video {
+    z-index: 2;
   }
 }
 h2 {
