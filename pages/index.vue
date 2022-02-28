@@ -1,20 +1,20 @@
 <template>
   <main>
-    <!-- <slide-intro id="home" data-nav-section="home" />
-    <slide-about-1 id="about" data-nav-section="about" />
-    <slide-about-2 data-nav-section="about" />
-    <slide-work id="work" data-nav-section="work" />
-    <slide-case-study
-      v-for="caseStudy in caseStudies"
-      :key="caseStudy.name"
-      :name="caseStudy.name"
-      :title="caseStudy.title"
-      :client="caseStudy.client"
-      :feature-img="caseStudy.featureImg"
-      data-nav-section="work"
-    />
-    <slide-more-work data-nav-section="work" />
-    <slide-contact id="contact" data-nav-section="contact" /> -->
+    <div class="scroll-wrapper"></div>
+    <div class="section-wrapper">
+      <slide-intro id="sectionIntro" />
+      <slide-about-1 id="sectionAbout1" ref="about1" class="slide" />
+      <slide-about-2 id="sectionAbout2" ref="about2" class="slide" />
+      <slide-work id="sectionWork" ref="work" class="slide" />
+      <!-- <section id="sectionAbout1">My</section>
+      <section id="sectionAbout2">Name</section>
+      <section id="sectionWork">Is</section>
+      <section class="sectionCaseStudy">
+        Is <nuxt-link to="/more-stuff">Some more stuff</nuxt-link>
+      </section>
+      <section class="sectionCaseStudy">My</section>
+      <section id="sectionMoreWork">Friend</section> -->
+    </div>
   </main>
 </template>
 
@@ -22,14 +22,16 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// import locomotive from '~/mixins/locomotive.js'
+import scrollPin from '~/mixins/scrollPinMixin.js'
+import SlideAbout1 from '~/components/SlideAbout1.vue'
+import SlideWork from '~/components/SlideWork.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
+  components: { SlideAbout1, SlideWork },
   name: 'IndexPage',
-  // mixins: [locomotive],
-
+  mixins: [scrollPin],
   data() {
     return {
       navSectionActive: '',
@@ -67,130 +69,147 @@ export default {
   //     },
   //   }
   // },
-  // watchQuery(newQuery, oldQuery) {
-  //   console.log(newQuery)
-  //   // if (
-  //   //   !document.querySelector('html').classList.contains('has-scroll-scrolling')
-  //   // ) {
-  //   if (Object.entries(newQuery).length === 0) {
-  //     this.$locoScroll.scrollTo(`#home`)
-  //     // gsap.to(this.$el, { scrollTo: ScrollTrigger.labelToScroll('#home') })
-  //   } else {
-  //     this.$locoScroll.scrollTo(`#${newQuery.route}`)
-  //     // gsap.to(this.$el, {scrollTo: ScrollTrigger.labelToScroll(`#${newQuery.route}`),})
-  //   }
-  //   // }
-  // },
   mounted() {
-    // this.updateNavSections()
-    //  ScrollTrigger.addEventListener('scrollStart', () => {
-    //   this.isScrolling = true
-    //   console.log('scrolling started!', this.isScrolling)
-    // })
-    // ScrollTrigger.addEventListener('scrollEnd', () => {
-    //   this.isScrolling = false
-    //   console.log('scrolling ended!', this.isScrolling)
-    // })
-    // this.$nextTick(() => {
-    //   setTimeout(() => {
-    //     this.pinSections()
-    //   }, 300)
-    // })
+    this.animationTimeline()
   },
   methods: {
-    // updateNavSections() {
-    //   const vm = this
-    //   const navSections = this.$el.querySelectorAll('.section-slide')
-    //   navSections.forEach((section) => {
-    //     // console.log('section', section.dataset.navSection)
-    //     ScrollTrigger.create({
-    //       trigger: section,
-    //       start: 'left right',
-    //       scrub: true,
-    //       horizontal: true,
-    //       invalidateOnRefresh: true,
-    //       onToggle: (self) => {
-    //         // console.log('toggled, isActive:', self.isActive)
-    //         if (self.isActive) {
-    //           vm.navSectionActive = section.dataset.navSection
-    //           vm.$store.commit('updateHomeNavItem', section.dataset.navSection)
-    //           // vm.$route.query.route = section.dataset.navSection
-    //           // this.$router.push({
-    //           //   // path: '/',
-    //           //   query: {
-    //           //     route: section.dataset.navSection,
-    //           //   },
-    //           // })
-    //           // }
-    //         }
-    //       },
-    //       // onUpdate: (self) => {
-    //       //   console.log(
-    //       //     'progress:',
-    //       //     self.progress.toFixed(3),
-    //       //     'direction:',
-    //       //     self.direction,
-    //       //     'velocity',
-    //       //     self.getVelocity()
-    //       //   )
-    //       // },
-    //     })
-    //   })
-    // },
-    // pinSections() {
-    //   const elements = this.$el.querySelectorAll('.section-slide .pin')
-    //   elements.forEach((element) => {
-    //     const article = element.querySelector('article')
-    //     // console.log('DAVE', this.$locoScroll)
-    //     const tl = gsap.timeline({
-    //       scrollTrigger: {
-    //         trigger: element,
-    //         start: () => 'left left',
-    //         end: () => '+=100%',
-    //         pin: true,
-    //         // anticipatePin: 1,
-    //         scrub: true,
-    //         horizontal: true,
-    //         invalidateOnRefresh: true,
-    //         // markers: true,
-    //         pinType: 'transform',
-    //       },
-    //     })
-    //     tl.fromTo(
-    //       article,
-    //       {
-    //         scale: 1,
-    //         autoAlpha: 1,
-    //       },
-    //       {
-    //         scale: 0.95,
-    //         autoAlpha: 0.75,
-    //         x: -500,
-    //         duration: 5,
-    //         delay: 0.5,
-    //         ease: 'power2.in',
-    //       },
-    //       'start'
-    //     )
-    //   })
-    // },
+    animationTimeline() {
+      const refs = this.$refs
+
+      console.log(refs.about1, 'refs.about1')
+
+      const sectionWrap = this.$el.querySelector('.section-wrapper')
+
+      // const caseStudies = this.$el.querySelectorAll('.sectionCaseStudy')
+      const scrollModifier = 2
+      const h = window.innerHeight
+      // const slides = this.$el.querySelectorAll('.slide')
+      // gsap.set(slides, { autoAlpha: 1 })
+      const tl = gsap.timeline({
+        // yes, we can add it to an entire timeline!
+        scrollTrigger: {
+          scroller: this.$el,
+          trigger: sectionWrap,
+          start: 'top top',
+          end: h * 8 - h,
+          scrub: true,
+          markers: true,
+        },
+      })
+      // * intro Out
+      tl.fromTo(
+        '#sectionIntro',
+        { x: 0, scale: 1 },
+        { x: '-101%', scale: 1, duration: scrollModifier }
+      )
+      // * about1 In
+      tl.fromTo(
+        '#sectionAbout1',
+        { x: '101%' },
+        {
+          x: 0,
+          duration: scrollModifier,
+        },
+        `-=${scrollModifier}`
+      )
+      // * about animate
+      tl.call(() => refs.about1.scrollAnimation().play(), null, '<')
+      // * about2 In
+      tl.fromTo(
+        '#sectionAbout2',
+        { x: '101%' },
+        {
+          x: 0,
+          duration: scrollModifier,
+        },
+        `+=${scrollModifier / 2}`
+      )
+      // * about animate
+      tl.call(() => refs.about2.scrollAnimation().play(), null, '<')
+      // * about 1 out
+      tl.to(
+        '#sectionAbout1',
+        {
+          x: '-101%',
+          scale: 0.95,
+          autoAlpha: 0.8,
+          duration: scrollModifier,
+        },
+        `-=${scrollModifier / 1.5}`
+      )
+      // * work In
+      tl.fromTo(
+        '#sectionWork',
+        { x: '101%' },
+        {
+          x: 0,
+          duration: scrollModifier,
+        },
+        `+=${scrollModifier / 2}`
+      )
+      // * about 2 out
+      tl.to(
+        '#sectionAbout2',
+        {
+          x: '-101%',
+          scale: 0.95,
+          autoAlpha: 0.8,
+          duration: scrollModifier,
+        },
+        `-=${scrollModifier / 1.5}`
+      )
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
 main {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // overflow: scroll;
+  overflow-x: hidden;
+  // width: 100vw;
+  // height: 100vh;
+  // display: flex;
+  // // align-items: center;
+  // flex-wrap: nowrap;
+  // padding-top: var(--headerHeight);
+  // @media only screen and (min-width: 300px) and (max-width: 1180px) {
+  // }
+}
+h1 {
+  font-size: 30vmin;
+}
+.scroll-wrapper {
+  width: 100vw;
+  height: 800vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  // z-index: 9;
+}
+
+.section-wrapper {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  padding-top: var(--headerHeight);
-  // @media only screen and (min-width: 300px) and (max-width: 1180px) {
-  //   width: 100%;
-  //   height: auto;
-  //   flex-wrap: wrap;
-  //   flex-direction: column;
-  //   overflow-x: hidden;
-  // }
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  // background: sandybrown;
+  overflow: hidden;
+  font-size: 18vmin;
+  top: 0;
+  left: 0;
+  background: var(--backgroundColor);
 }
 </style>

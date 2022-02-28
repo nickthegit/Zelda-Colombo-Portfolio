@@ -1,5 +1,14 @@
-// mobile scroll fix
-html.has-scroll-smooth {
+// // mobile scroll fix
+// html.has-scroll-smooth {
+//   overflow: hidden;
+//   position: fixed;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   bottom: 0;
+// }
+
+html {
   overflow: hidden;
   position: fixed;
   left: 0;
@@ -36,26 +45,40 @@ button {
   display: none;
 }
 
-.section-slide {
-  width: 100%;
-  height: 100%;
-  flex: 0 0 auto;
-  position: relative;
-  background: var(--backgroundColor);
-  overflow: hidden;
-  // &.case-study-slide {
-  //   background: transparent;
-  // }
-  &.extended {
-    width: 110%;
-  }
-  // @media only screen and (min-width: 300px) and (max-width: 1180px) {
-  //   height: 100vh;
-  //   flex: auto;
-  //   display: block;
-  //   &.extended {
-  //     width: 100%;
-  //     height: 110vh;
-  //   }
-  // }
+.scrollbar-track {
+  // display: none !important;
 }
+
+.pinSectionHoz {
+  // width: 120vw !important;
+  background: salmon !important;
+}
+
+.pinSectionVert {
+  height: 120vh !important;
+  background: salmon !important;
+}
+
+// .section-slide {
+//   width: 100%;
+//   height: 100%;
+//   flex: 0 0 auto;
+//   position: relative;
+//   background: var(--backgroundColor);
+//   overflow: hidden;
+//   // &.case-study-slide {
+//   //   background: transparent;
+//   // }
+//   &.extended {
+//     width: 110%;
+//   }
+//   // @media only screen and (min-width: 300px) and (max-width: 1180px) {
+//   //   height: 100vh;
+//   //   flex: auto;
+//   //   display: block;
+//   //   &.extended {
+//   //     width: 100%;
+//   //     height: 110vh;
+//   //   }
+//   // }
+// }

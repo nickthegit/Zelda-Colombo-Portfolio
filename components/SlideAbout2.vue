@@ -25,37 +25,36 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
   mounted() {
-    const heading = this.$el.querySelectorAll('h3')
-    const textSplit = new SplitText(heading, { type: 'chars' })
-    const text = textSplit.chars
-    if (text.length > 0) {
-      gsap.fromTo(
-        text,
-        {
-          autoAlpha: 0,
-        },
-        {
-          scrollTrigger: {
-            trigger: heading,
-            start: () => 'left right',
-            end: () => `+=80%`,
-            scrub: true,
-            horizontal: true,
-            invalidateOnRefresh: true,
+    this.scrollAnimation()
+  },
+  methods: {
+    scrollAnimation() {
+      const heading = this.$el.querySelectorAll('h3')
+      const textSplit = new SplitText(heading, { type: 'chars' })
+      const text = textSplit.chars
+      if (text.length > 0) {
+        const animation = gsap.fromTo(
+          text,
+          {
+            autoAlpha: 0,
           },
-          duration: 1,
-          autoAlpha: 1,
-          ease: CustomEase.create(
-            'custom',
-            'M0,0,C0.14,0,0.188,0.233,0.218,0.356,0.259,0.523,0.394,0.414,0.426,0.366,0.46,0.328,0.508,-0.044,0.562,0,0.598,0.029,0.606,0.834,0.676,0.824,0.738,0.74,0.815,0.398,0.834,0.412,0.853,0.426,0.897,0.985,0.911,0.998,0.922,0.994,0.939,0.984,0.954,0.984,0.969,0.984,1,1,1,1'
-          ),
-          stagger: {
-            each: 0.075,
-            from: 'random',
-          },
-        }
-      )
-    }
+          {
+            duration: 0.5,
+            autoAlpha: 1,
+            ease: CustomEase.create(
+              'custom',
+              'M0,0,C0.14,0,0.188,0.233,0.218,0.356,0.259,0.523,0.394,0.414,0.426,0.366,0.46,0.328,0.508,-0.044,0.562,0,0.598,0.029,0.606,0.834,0.676,0.824,0.738,0.74,0.815,0.398,0.834,0.412,0.853,0.426,0.897,0.985,0.911,0.998,0.922,0.994,0.939,0.984,0.954,0.984,0.969,0.984,1,1,1,1'
+            ),
+            stagger: {
+              each: 0.025,
+              from: 'random',
+            },
+          }
+        )
+
+        return animation
+      }
+    },
   },
 }
 </script>
