@@ -1,20 +1,18 @@
 <template>
-  <section class="section-slide case-study-slide extended" data-scroll-section>
-    <div class="pin">
-      <article class="case-study-item">
-        <nuxt-link to="#">
-          <div class="feature-image">
-            <img
-              :src="featureImg"
-              :alt="`${name} feature image - designed by Zelda Colombo`"
-            />
-          </div>
-          <h2>
-            <span v-if="client">{{ client }} — </span>{{ title }}
-          </h2>
-        </nuxt-link>
-      </article>
-    </div>
+  <section>
+    <article class="case-study-item">
+      <nuxt-link to="#">
+        <div class="feature-image">
+          <img
+            :src="featureImg"
+            :alt="`${name} feature image - designed by Zelda Colombo`"
+          />
+        </div>
+        <h2>
+          <span v-if="client">{{ client }} — </span>{{ title }}
+        </h2>
+      </nuxt-link>
+    </article>
   </section>
 </template>
 

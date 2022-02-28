@@ -1,5 +1,5 @@
 <template>
-  <section class="section-slide" data-scroll-section>
+  <section>
     <article>
       <h1 id="jobTitle">
         <span id="jobTitleHybrid">HYBRID</span>

@@ -1,5 +1,5 @@
 <template>
-  <section class="section-slide" data-scroll-section>
+  <section>
     <article>
       <h2>Some Work</h2>
     </article>

@@ -21,14 +21,8 @@
         :data-ref-name="caseStudy.name"
         class="case-study-slide"
       />
-      <!-- <section id="sectionAbout1">My</section>
-      <section id="sectionAbout2">Name</section>
-      <section id="sectionWork">Is</section>
-      <section class="sectionCaseStudy">
-        Is <nuxt-link to="/more-stuff">Some more stuff</nuxt-link>
-      </section>
-      <section class="sectionCaseStudy">My</section>
-      <section id="sectionMoreWork">Friend</section> -->
+      <slide-more-work id="sectionMoreWork" />
+      <slide-contact id="sectionContact" ref="contact" />
     </div>
   </main>
 </template>
@@ -41,11 +35,19 @@ import scrollPin from '~/mixins/scrollPinMixin.js'
 import SlideAbout1 from '~/components/SlideAbout1.vue'
 import SlideWork from '~/components/SlideWork.vue'
 import SlideCaseStudyPlaceholder from '~/components/SlideCaseStudyPlaceholder.vue'
+import SlideMoreWork from '~/components/SlideMoreWork.vue'
+import SlideContact from '~/components/SlideContact.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
-  components: { SlideAbout1, SlideWork, SlideCaseStudyPlaceholder },
+  components: {
+    SlideAbout1,
+    SlideWork,
+    SlideCaseStudyPlaceholder,
+    SlideMoreWork,
+    SlideContact,
+  },
   name: 'IndexPage',
   mixins: [scrollPin],
   data() {
@@ -196,7 +198,7 @@ export default {
         )
 
         tl.add(refs[caseStudy.dataset.refName][0].animation, '<')
-        // * work 2 out
+        // * case studies out 2 out
         tl.to(caseStudy, {
           x: '-101%',
           scale: 0.95,
@@ -205,6 +207,41 @@ export default {
           duration: scrollModifier,
         })
       })
+      // * more work in
+      tl.fromTo(
+        '#sectionMoreWork',
+        { x: '101%' },
+        {
+          x: 0,
+          ease: 'power3.out',
+          duration: scrollModifier,
+        },
+        `-=${scrollModifier / 1.5}`
+      )
+
+      // * more work 2 out
+      tl.to(
+        '#sectionMoreWork',
+        {
+          x: '-101%',
+          scale: 0.95,
+          autoAlpha: 0.2,
+          ease: 'power3.in',
+        },
+        `+=${scrollModifier / 1.5}`
+      )
+      // * contact in
+      tl.fromTo(
+        '#sectionContact',
+        { x: '101%' },
+        {
+          x: 0,
+          ease: 'power3.out',
+          duration: scrollModifier,
+        },
+        `-=${scrollModifier / 1.5}`
+      )
+      tl.add(refs.contact.animation, '<')
     },
   },
 }

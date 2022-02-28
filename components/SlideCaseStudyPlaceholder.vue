@@ -1,5 +1,5 @@
 <template>
-  <section class="section-slide case-study-slide extended" data-scroll-section>
+  <section>
     <article class="case-study-item">
       <div class="feature-image">
         <img

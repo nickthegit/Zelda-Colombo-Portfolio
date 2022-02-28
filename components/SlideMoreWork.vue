@@ -1,12 +1,10 @@
 <template>
-  <section class="section-slide extended" data-scroll-section>
-    <div class="pin">
-      <article>
-        <nuxt-link to="#">
-          <h2>Some <br />more stuff</h2>
-        </nuxt-link>
-      </article>
-    </div>
+  <section>
+    <article>
+      <nuxt-link to="/more-stuff">
+        <h2>Some <br />more stuff</h2>
+      </nuxt-link>
+    </article>
   </section>
 </template>
 
