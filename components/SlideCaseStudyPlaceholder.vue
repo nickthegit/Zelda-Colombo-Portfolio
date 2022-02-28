@@ -2,10 +2,15 @@
   <section>
     <article class="case-study-item">
       <div class="feature-image">
-        <img
-          :src="featureImg"
-          :alt="`${name} feature image - designed by Zelda Colombo`"
-        />
+        <intersect @enter="videoIn" @leave="videoOut">
+          <div v-if="isVideo" class="video"></div>
+
+          <img
+            v-else
+            :src="featureImg"
+            :alt="`${name} feature image - designed by Zelda Colombo`"
+          />
+        </intersect>
       </div>
       <h2>
         <a :href="link" target="_blank" rel="noopener noreferrer">
@@ -42,8 +47,13 @@ import { CustomEase } from 'gsap/CustomEase'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import Vimeo from '@vimeo/player'
+
+import Intersect from 'vue-intersect'
+
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
+  components: { Intersect },
   props: {
     name: {
       type: String,
@@ -73,6 +83,7 @@ export default {
   data() {
     return {
       animation: null,
+      player: null,
     }
   },
   computed: {
@@ -93,6 +104,8 @@ export default {
   },
   mounted() {
     this.scrollAnimation()
+
+    this.setupVideo()
   },
   methods: {
     scrollAnimation() {
@@ -118,6 +131,32 @@ export default {
             },
           }
         )
+      }
+    },
+    setupVideo() {
+      const vm = this
+      const el = this.$el.querySelector('.video')
+      if (this.isVideo) {
+        this.player = new Vimeo(el, {
+          id: vm.videoId,
+          // background: true,
+          // autoplay: true,
+          muted: true,
+          loop: true,
+          controls: false,
+          byline: false,
+        })
+      }
+      // this.player.pause()
+    },
+    videoIn() {
+      if (this.isVideo) {
+        this.player.play()
+      }
+    },
+    videoOut() {
+      if (this.isVideo) {
+        this.player.pause()
       }
     },
   },
@@ -153,7 +192,9 @@ a {
   max-width: 1024px;
   position: relative;
   padding-bottom: 56.25%;
-  img {
+  img,
+  .video,
+  iframe {
     width: 100%;
     height: 100%;
     object-fit: contain;

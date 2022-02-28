@@ -18,6 +18,7 @@
         :client="caseStudy.client"
         :feature-img="caseStudy.featureImg"
         :link="caseStudy.link"
+        :video-id="caseStudy.videoId"
         :data-ref-name="caseStudy.name"
         class="case-study-slide"
       />
@@ -63,6 +64,7 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802860/ZC/placeholder/grandclosing.jpg',
           link: 'https://renewlabs.com',
+          videoId: '',
         },
         {
           name: 'state-of-skate',
@@ -71,6 +73,7 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
           link: 'https://skatexsneakers.com',
+          videoId: '640287170',
         },
         {
           name: 'excursions',
@@ -79,6 +82,7 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/v1645802841/ZC/placeholder/excersions.svg',
           link: 'https://stockx.com/excursions/',
+          videoId: '',
         },
       ],
     }
