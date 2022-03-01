@@ -3,7 +3,9 @@
     <article class="case-study-item">
       <div class="feature-image">
         <!-- <intersect @enter="videoIn" @leave="videoOut"> -->
-        <div v-if="isVideo" class="video"></div>
+        <observer v-if="isVideo" @on-change="onChange">
+          <div class="video"></div>
+        </observer>
         <!-- </intersect> -->
         <img
           :src="featureImg"
@@ -47,11 +49,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Vimeo from '@vimeo/player'
 
-// import Intersect from 'vue-intersect'
+import Observer from 'vue-intersection-observer'
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
-  // components: { Intersect },
+  components: { Observer },
   props: {
     name: {
       type: String,
@@ -147,13 +149,10 @@ export default {
       }
       // this.player.pause()
     },
-    videoIn() {
-      if (this.isVideo) {
+    onChange(entry) {
+      if (entry.isIntersecting) {
         this.player.play()
-      }
-    },
-    videoOut() {
-      if (this.isVideo) {
+      } else {
         this.player.pause()
       }
     },
