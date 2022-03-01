@@ -149,7 +149,7 @@ export default {
       // eslint-disable-next-line no-unused-vars
       const vm = this
 
-      const throttleFunc = throttle(500, () => {
+      const throttleFunc = throttle(300, () => {
         vm.$store.commit('updateHomeNavItem', vm.timeline.currentLabel())
       })
 
@@ -321,8 +321,8 @@ export default {
       const sectionW = (m * h) / t
 
       const scrollToPixel = sectionW * n
-      this.scrollBar.scrollTo(0, scrollToPixel, 2000, {
-        callback: () => console.log('done!'),
+      this.scrollBar.scrollTo(0, scrollToPixel, 0, {
+        callback: () => console.log('!'),
       })
     },
   },
