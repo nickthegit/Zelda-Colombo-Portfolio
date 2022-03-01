@@ -159,6 +159,9 @@ section {
   height: 100vh;
   padding: 0 var(--headerHeight);
   // background: sandybrown;
+  @media screen and (max-width: 600px) {
+    padding: 0 10px;
+  }
   svg {
     width: 120px;
     display: block;

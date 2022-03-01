@@ -386,5 +386,8 @@ section {
   &#sectionIntro {
     height: 100vh;
   }
+  @media screen and (max-width: 600px) {
+    height: calc(100vh);
+  }
 }
 </style>

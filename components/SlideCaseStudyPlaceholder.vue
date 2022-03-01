@@ -226,6 +226,9 @@ h2 {
   margin-left: 10px;
   svg {
     width: 100%;
+    path {
+      fill: var(--foregroundColor);
+    }
   }
 }
 </style>

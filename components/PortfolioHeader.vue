@@ -30,7 +30,14 @@
         <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
         <nuxt-link v-else to="/">ZELDA COLOMBO</nuxt-link>
       </div>
-      <button class="hamburger" @click="toggleNav">===</button>
+      <button class="hamburger" @click="toggleNav">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 55 17">
+          <path
+            fill="#fff"
+            d="M45.79 0c-1.96 0-3.858.683-5.372 1.93a8.506 8.506 0 0 0-2.933 4.912 8.527 8.527 0 0 0 .837 5.665 8.481 8.481 0 0 0 4.228 3.846 8.441 8.441 0 0 0 5.7.281 8.472 8.472 0 0 0 4.583-3.41 8.524 8.524 0 0 0-1.05-10.733A8.467 8.467 0 0 0 45.79 0Zm0 10.768a2.25 2.25 0 0 1-1.432-.513 2.266 2.266 0 0 1-.56-2.817 2.249 2.249 0 0 1 3.866-.192 2.27 2.27 0 0 1-1.011 3.35 2.246 2.246 0 0 1-.863.172ZM27.128 0a8.45 8.45 0 0 0-5.372 1.93 8.506 8.506 0 0 0-2.933 4.912 8.527 8.527 0 0 0 .837 5.665 8.48 8.48 0 0 0 4.228 3.846 8.441 8.441 0 0 0 5.7.281 8.472 8.472 0 0 0 4.583-3.41 8.523 8.523 0 0 0-1.05-10.733A8.469 8.469 0 0 0 27.128 0Zm0 10.768a2.25 2.25 0 0 1-1.432-.513 2.266 2.266 0 0 1-.56-2.817 2.249 2.249 0 0 1 3.866-.192 2.27 2.27 0 0 1-.28 2.86 2.25 2.25 0 0 1-1.594.657v.005ZM8.468 0C6.508 0 4.61.683 3.096 1.93A8.506 8.506 0 0 0 .163 6.842 8.527 8.527 0 0 0 1 12.507a8.48 8.48 0 0 0 4.228 3.846 8.441 8.441 0 0 0 5.7.281 8.472 8.472 0 0 0 4.583-3.41 8.524 8.524 0 0 0-1.05-10.733A8.466 8.466 0 0 0 8.467 0Zm0 10.768a2.251 2.251 0 0 1-1.432-.513 2.266 2.266 0 0 1-.56-2.817 2.249 2.249 0 0 1 3.866-.192 2.27 2.27 0 0 1-1.011 3.35 2.242 2.242 0 0 1-.863.172Z"
+          />
+        </svg>
+      </button>
       <ul v-if="navOpen">
         <li
           v-for="navItem in navItems"
@@ -111,9 +118,6 @@ export default {
     toggleNav() {
       this.navOpen = !this.navOpen
     },
-    navigate(target) {
-      this.$locoScroll.scrollTo(target)
-    },
   },
 }
 </script>
@@ -183,10 +187,17 @@ button {
     text-align: center;
   }
   .hamburger {
+    width: 50px;
+    height: 20px;
     position: absolute;
     left: 0;
-    background: salmon;
     z-index: 6;
+    svg {
+      width: 100%;
+      path {
+        fill: var(--foregroundColor);
+      }
+    }
   }
   ul {
     width: 100%;
@@ -194,10 +205,13 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    // background: var(--backgroundColor);
+    background: var(--backgroundColor);
     padding: calc(var(--headerHeight) + var(--genSpacing)) var(--genSpacing);
     z-index: 1;
     text-align: center;
+    li {
+      margin-bottom: 20px;
+    }
   }
   .modeBtn {
     position: fixed;

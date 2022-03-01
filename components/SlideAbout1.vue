@@ -72,10 +72,12 @@ h3 {
   font-variation-settings: 'wght' 600;
   text-align: left;
   font-size: var(--m);
+  white-space: nowrap;
+  // word-break: break-word;
   // letter-spacing: -0.14vmin;
   // line-height: 13.5vmin;
   @media screen and (max-width: 600px) {
-    margin-bottom: var(--genSpacing);
+    // margin-bottom: var(--genSpacing);
   }
 }
 </style>
