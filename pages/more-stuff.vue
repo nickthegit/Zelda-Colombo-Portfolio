@@ -156,6 +156,9 @@ img {
   &.img100 {
     width: 100%;
   }
+  @media screen and (max-width: 600px) {
+    width: 100% !important;
+  }
 }
 section {
   width: 100vw;
