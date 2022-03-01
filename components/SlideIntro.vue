@@ -52,25 +52,9 @@ export default {
   mounted() {
     gsap.set('#jobTitle', { autoAlpha: 0 })
 
-    // const scrollIcon = this.$el.querySelector('svg')
-    // gsap.to(scrollIcon, {
-    //   scrollTrigger: {
-    //     trigger: scrollIcon,
-    //     // TODO
-    //     start: () => 'center center',
-    //     end: () => '+=10%',
-    //     // pin: true,
-    //     // anticipatePin: 1,
-    //     scrub: true,
-    //     horizontal: true,
-    //     invalidateOnRefresh: true,
-    //     // markers: true,
-    //     pinType: 'transform',
-    //   },
-    //   x: -40,
-    //   autoAlpha: 0,
-    //   duration: 1,
-    // })
+    if (this.loaded) {
+      this.jobTitleAnimation()
+    }
   },
   methods: {
     jobTitleAnimation() {

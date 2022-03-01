@@ -42,7 +42,10 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { SplitText } from 'gsap/SplitText'
 import { CustomEase } from 'gsap/CustomEase'
 
+import { throttle } from 'throttle-debounce'
+
 import scrollPin from '~/mixins/scrollPinMixin.js'
+
 import SlideAbout1 from '~/components/SlideAbout1.vue'
 import SlideWork from '~/components/SlideWork.vue'
 import SlideCaseStudyPlaceholder from '~/components/SlideCaseStudyPlaceholder.vue'
@@ -146,6 +149,10 @@ export default {
       // eslint-disable-next-line no-unused-vars
       const vm = this
 
+      const throttleFunc = throttle(500, () => {
+        vm.$store.commit('updateHomeNavItem', vm.timeline.currentLabel())
+      })
+
       const refs = this.$refs
 
       const sectionWrap = this.$el.querySelector('.section-wrapper')
@@ -165,7 +172,7 @@ export default {
           // markers: true,
         },
         onUpdate(self) {
-          console.log(vm.timeline.currentLabel())
+          throttleFunc()
         },
       })
       // * intro Out
