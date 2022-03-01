@@ -3,14 +3,18 @@
     <nav id="main-nav">
       <ul>
         <li class="brand">
-          <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
+          <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
+          <nuxt-link v-else to="/">ZELDA COLOMBO</nuxt-link>
         </li>
         <li
           v-for="navItem in navItems"
           :key="navItem._id"
           :class="navItem.target === $store.state.homeNavItem ? 'active' : ''"
         >
-          <nuxt-link :to="`/?route=${navItem.target}`">{{
+          <button v-if="isHome" @click="homeScrollTo(navItem.sectionNumber)">
+            {{ navItem.name }}
+          </button>
+          <nuxt-link v-else :to="`/#${navItem.target}`">{{
             navItem.name
           }}</nuxt-link>
         </li>
@@ -23,7 +27,8 @@
     </nav>
     <nav id="mobile-nav">
       <div class="brand" @click="navOpen = false">
-        <nuxt-link to="/">ZELDA COLOMBO</nuxt-link>
+        <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
+        <nuxt-link v-else to="/">ZELDA COLOMBO</nuxt-link>
       </div>
       <button class="hamburger" @click="toggleNav">===</button>
       <ul v-if="navOpen">
@@ -33,7 +38,10 @@
           :class="navItem.target === $store.state.homeNavItem ? 'active' : ''"
           @click="navOpen = false"
         >
-          <nuxt-link :to="`/?route=${navItem.target}`">{{
+          <button v-if="isHome" @click="homeScrollTo(navItem.sectionNumber)">
+            {{ navItem.name }}
+          </button>
+          <nuxt-link v-else :to="`/#${navItem.target}`">{{
             navItem.name
           }}</nuxt-link>
         </li>
@@ -51,6 +59,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 export default {
+  props: {
+    isHome: {
+      type: Boolean,
+      default: false,
+    },
+    homeScrollTo: {
+      type: Function,
+      default: null,
+    },
+  },
   data() {
     return {
       navOpen: false,
@@ -60,24 +78,27 @@ export default {
           link: '/about',
           target: 'about',
           _id: 'LnqYw7SwwFTJmTDhLE',
+          sectionNumber: 1,
         },
         {
           name: 'Work',
           link: '/work',
           target: 'work',
           _id: 'eOaVAhg9p6',
+          sectionNumber: 3,
         },
         {
           name: 'Contact',
           link: '/contact',
           target: 'contact',
           _id: 'cY6p8Bbl',
+          sectionNumber: 9,
         },
       ],
     }
   },
   mounted() {
-    // console.log(this)
+    // console.log(this.$route.name)
   },
   methods: {
     changeTheme() {
@@ -122,7 +143,8 @@ a {
 }
 li {
   &.active {
-    a {
+    a,
+    button {
       color: var(--primaryColor);
     }
   }

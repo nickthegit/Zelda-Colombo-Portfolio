@@ -20,7 +20,7 @@ gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
   data() {
     return {
-      animation: null,
+      animationC: null,
     }
   },
   mounted() {
@@ -32,7 +32,7 @@ export default {
       const textSplit = new SplitText(heading, { type: 'chars' })
       const text = textSplit.chars
       if (text.length > 0) {
-        this.animation = gsap.fromTo(
+        this.animationC = gsap.fromTo(
           text,
           {
             autoAlpha: 0,

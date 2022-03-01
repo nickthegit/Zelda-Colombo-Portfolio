@@ -5,6 +5,13 @@
       :style="{ height: tlMultiplier * 100 + 'vh' }"
     ></div>
     <div class="section-wrapper">
+      <portfolio-header :is-home="true" :home-scroll-to="goToSection" />
+      <!-- <header>
+        <button @click="goToSection(0)">home</button>
+        <button @click="goToSection(1)">about</button>
+        <button @click="goToSection(3)">work</button>
+        <button @click="goToSection(9)">contact</button>
+      </header> -->
       <slide-intro id="sectionIntro" />
       <slide-about-1 id="sectionAbout1" ref="about1" class="slide" />
       <slide-about-2 id="sectionAbout2" ref="about2" class="slide" />
@@ -31,6 +38,9 @@
 <script>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { SplitText } from 'gsap/SplitText'
+import { CustomEase } from 'gsap/CustomEase'
 
 import scrollPin from '~/mixins/scrollPinMixin.js'
 import SlideAbout1 from '~/components/SlideAbout1.vue'
@@ -38,22 +48,24 @@ import SlideWork from '~/components/SlideWork.vue'
 import SlideCaseStudyPlaceholder from '~/components/SlideCaseStudyPlaceholder.vue'
 import SlideMoreWork from '~/components/SlideMoreWork.vue'
 import SlideContact from '~/components/SlideContact.vue'
+import PortfolioHeader from '~/components/PortfolioHeader.vue'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, CustomEase)
 
 export default {
+  name: 'IndexPage',
   components: {
     SlideAbout1,
     SlideWork,
     SlideCaseStudyPlaceholder,
     SlideMoreWork,
     SlideContact,
+    PortfolioHeader,
   },
-  name: 'IndexPage',
   mixins: [scrollPin],
   data() {
     return {
-      tlMultiplier: 24,
+      tlMultiplier: 27,
       navSectionActive: '',
       isScrolling: false,
       caseStudies: [
@@ -73,7 +85,7 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
           link: 'https://skatexsneakers.com',
-          videoId: '640287170',
+          videoId: '683041606',
         },
         {
           name: 'excursions',
@@ -85,8 +97,10 @@ export default {
           videoId: '',
         },
       ],
+      timeline: null,
     }
   },
+  computed: {},
   // head() {
   //   return {
   //     bodyAttrs: {
@@ -96,10 +110,42 @@ export default {
   //   }
   // },
   mounted() {
-    this.animationTimeline()
+    this.$nextTick(() => {
+      this.animationTimeline()
+    })
   },
   methods: {
+    scrollAnimationA2() {
+      const heading = this.$el.querySelectorAll('#sectionAbout2 h3')
+      const textSplit = new SplitText(heading, { type: 'chars' })
+      const text = textSplit.chars
+      if (text.length > 0) {
+        const animationA2 = gsap.fromTo(
+          text,
+          {
+            autoAlpha: 0,
+          },
+          {
+            duration: 0.5,
+            autoAlpha: 1,
+            ease: CustomEase.create(
+              'custom',
+              'M0,0,C0.14,0,0.188,0.233,0.218,0.356,0.259,0.523,0.394,0.414,0.426,0.366,0.46,0.328,0.508,-0.044,0.562,0,0.598,0.029,0.606,0.834,0.676,0.824,0.738,0.74,0.815,0.398,0.834,0.412,0.853,0.426,0.897,0.985,0.911,0.998,0.922,0.994,0.939,0.984,0.954,0.984,0.969,0.984,1,1,1,1'
+            ),
+            stagger: {
+              each: 0.025,
+              from: 'random',
+            },
+          }
+        )
+
+        return animationA2
+      }
+    },
     animationTimeline() {
+      // eslint-disable-next-line no-unused-vars
+      const vm = this
+
       const refs = this.$refs
 
       const sectionWrap = this.$el.querySelector('.section-wrapper')
@@ -109,24 +155,29 @@ export default {
       const h = window.innerHeight
       const m = this.tlMultiplier
 
-      const tl = gsap.timeline({
+      this.timeline = gsap.timeline({
         scrollTrigger: {
           scroller: this.$el,
           trigger: sectionWrap,
           start: 'top top',
           end: h * m - h,
           scrub: true,
-          markers: true,
+          // markers: true,
+        },
+        onUpdate(self) {
+          console.log(vm.timeline.currentLabel())
         },
       })
       // * intro Out
-      tl.fromTo(
+      this.timeline.addLabel('start')
+      this.timeline.fromTo(
         '#sectionIntro',
         { x: 0, scale: 1 },
         { x: '-101%', scale: 1, ease: 'power3.in', duration: scrollModifier }
       )
       // * about1 In
-      tl.fromTo(
+      this.timeline.addLabel('about')
+      this.timeline.fromTo(
         '#sectionAbout1',
         { x: '101%' },
         {
@@ -137,9 +188,9 @@ export default {
         `-=${scrollModifier / 1.5}`
       )
       // * about animate
-      tl.add(refs.about1.animation, '<')
+      this.timeline.add(refs.about1.animationA1, '<')
       // * about 1 out
-      tl.to('#sectionAbout1', {
+      this.timeline.to('#sectionAbout1', {
         x: '-101%',
         scale: 0.95,
         autoAlpha: 0.2,
@@ -147,7 +198,7 @@ export default {
         duration: scrollModifier,
       })
       // * about2 In
-      tl.fromTo(
+      this.timeline.fromTo(
         '#sectionAbout2',
         { x: '101%' },
         {
@@ -158,9 +209,9 @@ export default {
         `-=${scrollModifier / 1.5}`
       )
       // * about animate
-      tl.add(refs.about2.animation, '<')
+      this.timeline.add(vm.scrollAnimationA2, '<')
       // * about 2 out
-      tl.to('#sectionAbout2', {
+      this.timeline.to('#sectionAbout2', {
         x: '-101%',
         scale: 0.95,
         autoAlpha: 0.2,
@@ -168,7 +219,8 @@ export default {
         duration: scrollModifier,
       })
       // * work In
-      tl.fromTo(
+      this.timeline.addLabel('work')
+      this.timeline.fromTo(
         '#sectionWork',
         { x: '101%' },
         {
@@ -178,9 +230,8 @@ export default {
         },
         `-=${scrollModifier / 1.5}`
       )
-
       // * work 2 out
-      tl.to('#sectionWork', {
+      this.timeline.to('#sectionWork', {
         x: '-101%',
         scale: 0.95,
         autoAlpha: 0.2,
@@ -190,7 +241,7 @@ export default {
 
       // * case studies in
       caseStudies.forEach((caseStudy) => {
-        tl.fromTo(
+        this.timeline.fromTo(
           caseStudy,
           { x: '101%' },
           {
@@ -201,9 +252,9 @@ export default {
           `-=${scrollModifier / 1.5}`
         )
 
-        tl.add(refs[caseStudy.dataset.refName][0].animation, '<')
+        this.timeline.add(refs[caseStudy.dataset.refName][0].animationCS, '<')
         // * case studies out 2 out
-        tl.to(caseStudy, {
+        this.timeline.to(caseStudy, {
           x: '-101%',
           scale: 0.95,
           autoAlpha: 0.2,
@@ -212,7 +263,7 @@ export default {
         })
       })
       // * more work in
-      tl.fromTo(
+      this.timeline.fromTo(
         '#sectionMoreWork',
         { x: '101%' },
         {
@@ -224,7 +275,7 @@ export default {
       )
 
       // * more work 2 out
-      tl.to(
+      this.timeline.to(
         '#sectionMoreWork',
         {
           x: '-101%',
@@ -235,7 +286,8 @@ export default {
         `+=${scrollModifier / 1.5}`
       )
       // * contact in
-      tl.fromTo(
+      this.timeline.addLabel('contact')
+      this.timeline.fromTo(
         '#sectionContact',
         { x: '101%' },
         {
@@ -245,7 +297,26 @@ export default {
         },
         `-=${scrollModifier / 1.5}`
       )
-      tl.add(refs.contact.animation, '<')
+      this.timeline.add(refs.contact.animationC, '<')
+
+      // const tl = this.timeline
+      // setTimeout(() => {
+      //   this.scrollBar.scrollTo(0, h * 3, 2000, {
+      //     callback: () => console.log('done!'),
+      //   })
+      // }, 9000)
+    },
+    goToSection(sectionNumber) {
+      const n = sectionNumber
+      const m = this.tlMultiplier
+      const h = window.innerHeight
+      const t = 9 // total number of sections
+      const sectionW = (m * h) / t
+
+      const scrollToPixel = sectionW * n
+      this.scrollBar.scrollTo(0, scrollToPixel, 2000, {
+        callback: () => console.log('done!'),
+      })
     },
   },
 }
@@ -267,6 +338,12 @@ main {
   // padding-top: var(--headerHeight);
   // @media only screen and (min-width: 300px) and (max-width: 1180px) {
   // }
+}
+header {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
 }
 h1 {
   font-size: 30vmin;
@@ -291,13 +368,16 @@ h1 {
 }
 section {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 80px);
   position: absolute;
   // background: sandybrown;
   overflow: hidden;
   font-size: 18vmin;
-  top: 0;
+  bottom: 0;
   left: 0;
   background: var(--backgroundColor);
+  &#sectionIntro {
+    height: 100vh;
+  }
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <main>
-    <section>Hey</section>
-    <section class="pinSectionVert">Page</section>
+    <section>Hey WIP</section>
+    <section class="pinSectionVert">WIP</section>
     <section>No. 2 <nuxt-link to="/">back to home</nuxt-link></section>
-    <section>yeahhh</section>
-    <section>Boi</section>
+    <section>WIP</section>
+    <section>WIP</section>
   </main>
 </template>
 

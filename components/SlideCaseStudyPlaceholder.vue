@@ -2,9 +2,9 @@
   <section>
     <article class="case-study-item">
       <div class="feature-image">
-        <intersect @enter="videoIn" @leave="videoOut">
-          <div v-if="isVideo" class="video"></div>
-        </intersect>
+        <!-- <intersect @enter="videoIn" @leave="videoOut"> -->
+        <div v-if="isVideo" class="video"></div>
+        <!-- </intersect> -->
         <img
           :src="featureImg"
           :alt="`${name} feature image - designed by Zelda Colombo`"
@@ -47,11 +47,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Vimeo from '@vimeo/player'
 
-import Intersect from 'vue-intersect'
+// import Intersect from 'vue-intersect'
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger)
 export default {
-  components: { Intersect },
+  // components: { Intersect },
   props: {
     name: {
       type: String,
@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      animation: null,
+      animationCS: null,
       player: null,
     }
   },
@@ -111,7 +111,7 @@ export default {
       const textSplit = new SplitText(heading, { type: 'chars' })
       const text = textSplit.chars
       if (text.length > 0) {
-        this.animation = gsap.fromTo(
+        this.animationCS = gsap.fromTo(
           text,
           {
             autoAlpha: 0,
@@ -186,10 +186,9 @@ a {
 }
 .feature-image {
   width: 100%;
-  height: 0;
   max-width: 1024px;
   position: relative;
-  padding-bottom: 56.25%;
+  aspect-ratio: 16 / 9;
   img,
   .video,
   iframe {
