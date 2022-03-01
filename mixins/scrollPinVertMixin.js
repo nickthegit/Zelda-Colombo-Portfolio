@@ -31,25 +31,29 @@ export default {
     ScrollTrigger.defaults({ scroller })
 
     const sections = this.$el.querySelectorAll('.pinSectionVert')
-    this.$nextTick(
-      function () {
-        gsap.utils.toArray(sections).forEach((section) => {
-          this.scrollPinVert = ScrollTrigger.create({
-            scroller,
-            trigger: section,
-            pin: true,
-            start: 'top top',
-            scrub: true,
-            end: '+=800',
-            markers: true,
+    if (sections.length > 0) {
+      this.$nextTick(
+        function () {
+          gsap.utils.toArray(sections).forEach((section) => {
+            this.scrollPinVert = ScrollTrigger.create({
+              scroller,
+              trigger: section,
+              pin: true,
+              start: 'top top',
+              scrub: true,
+              end: '+=800',
+              // markers: true,
+            })
           })
-        })
-        this.scrollPinVert.enable()
-        this.scrollPinVert.refresh()
-      }.bind(this)
-    )
+          this.scrollPinVert.enable()
+          this.scrollPinVert.refresh()
+        }.bind(this)
+      )
+    }
   },
   destroyed() {
-    this.scrollPinVert.disable()
+    if (this.scrollPinVert) {
+      this.scrollPinVert.disable()
+    }
   },
 }
