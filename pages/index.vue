@@ -6,12 +6,6 @@
     ></div>
     <div class="section-wrapper">
       <portfolio-header :is-home="true" :home-scroll-to="goToSection" />
-      <!-- <header>
-        <button @click="goToSection(0)">home</button>
-        <button @click="goToSection(1)">about</button>
-        <button @click="goToSection(3)">work</button>
-        <button @click="goToSection(9)">contact</button>
-      </header> -->
       <slide-intro id="sectionIntro" />
       <slide-about-1 id="sectionAbout1" ref="about1" class="slide" />
       <slide-about-2 id="sectionAbout2" ref="about2" class="slide" />
@@ -68,7 +62,7 @@ export default {
   mixins: [scrollPin],
   data() {
     return {
-      tlMultiplier: 27,
+      tlMultiplier: 36,
       navSectionActive: '',
       isScrolling: false,
       caseStudies: [
@@ -91,12 +85,48 @@ export default {
           videoId: '683041606',
         },
         {
+          name: 'data-viz',
+          title: 'Data Visualization',
+          client: 'StockX',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
+          link: '',
+          videoId: '683041606',
+        },
+        {
           name: 'excursions',
           title: 'Excursions',
           client: 'StockX',
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/v1645802841/ZC/placeholder/excersions.svg',
           link: 'https://stockx.com/excursions/',
+          videoId: '',
+        },
+        {
+          name: 'berlin-braves',
+          title: 'Website',
+          client: 'Berlin Braves',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802845/ZC/placeholder/berlinbraves.jpg',
+          link: 'https://berlinbraves.com/',
+          videoId: '',
+        },
+        {
+          name: 'grammes',
+          title: 'Identity',
+          client: 'Grammes',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802842/ZC/placeholder/grammes.jpg',
+          link: '',
+          videoId: '',
+        },
+        {
+          name: 'nike-nrc-beyond-the-miles',
+          title: 'Beyond The Miles',
+          client: 'Nike NRC',
+          featureImg:
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802843/ZC/placeholder/NikeFocusonRunningEditorial.jpg',
+          link: '',
           videoId: '',
         },
       ],
@@ -317,7 +347,7 @@ export default {
       const n = sectionNumber
       const m = this.tlMultiplier
       const h = window.innerHeight
-      const t = 9 // total number of sections
+      const t = 13 // total number of sections
       const sectionW = (m * h) / t
 
       const scrollToPixel = sectionW * n
