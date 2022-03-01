@@ -71,6 +71,13 @@ export default {
       name: 'Zelda Colombo',
       title: 'Zelda Colombo',
       ogType: 'website',
+      ogSiteName: 'Zelda Colombo Portfolio',
+      ogTitle: 'ZELDA COLOMBO',
+      ogDescription:
+        'Web Design. Digital Experience. Creative Conception. Graphic Design',
+      ogHost: 'https://zeldacolombo.com',
+      ogImage:
+        'https://res.cloudinary.com/jonserness/image/upload/q_auto/v1646162470/ZC/placeholder/Homepage.jpg',
     },
   },
 
