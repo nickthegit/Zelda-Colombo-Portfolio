@@ -159,6 +159,10 @@ section {
   height: 100vh;
   padding: 0 var(--headerHeight);
   // background: sandybrown;
+  @media screen and (max-width: 900px) {
+    padding: 0 20px;
+  }
+
   @media screen and (max-width: 600px) {
     padding: 0 10px;
   }

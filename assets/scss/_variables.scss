@@ -21,6 +21,11 @@
   --s: 11vmin;
   --p: 3.5vmin;
 }
+@media screen and (max-width: 900px) {
+  :root {
+    --m: 10vmin;
+  }
+}
 @media screen and (max-width: 600px) {
   :root {
     --m: 9.5vmin;
