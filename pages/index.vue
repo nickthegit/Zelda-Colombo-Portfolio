@@ -148,6 +148,7 @@ export default {
   // },
   mounted() {
     this.$nextTick(() => {
+      this.checkPrevRoute()
       this.animationTimeline()
     })
   },
@@ -358,6 +359,12 @@ export default {
       this.scrollBar.scrollTo(0, scrollToPixel, 0, {
         callback: () => console.log('!'),
       })
+    },
+    checkPrevRoute() {
+      const prevRoute = this.$nuxt.context.from
+      if (prevRoute && this.$nuxt.context.from.name === 'more-stuff') {
+        this.goToSection(11.5)
+      }
     },
   },
 }
