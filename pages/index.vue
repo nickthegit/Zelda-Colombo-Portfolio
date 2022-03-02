@@ -62,7 +62,7 @@ export default {
   mixins: [scrollPin],
   data() {
     return {
-      tlMultiplier: 36,
+      // tlMultiplier: 36,
       navSectionActive: '',
       isScrolling: false,
       caseStudies: [
@@ -80,9 +80,9 @@ export default {
           title: 'State of Skate',
           client: 'StockX + TDM',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646223691/ZC/placeholder/Screenshot_2022-03-02_at_12.24.11.png',
           link: 'https://skatexsneakers.com',
-          videoId: '683041606',
+          videoId: '683713435',
         },
         {
           name: 'data-viz',
@@ -107,9 +107,9 @@ export default {
           title: 'Website',
           client: 'Berlin Braves',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802845/ZC/placeholder/berlinbraves.jpg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646223613/ZC/placeholder/Screenshot_2022-03-02_at_12.27.37.png',
           link: 'https://berlinbraves.com/',
-          videoId: '',
+          videoId: '683721819',
         },
         {
           name: 'grammes',
@@ -133,7 +133,11 @@ export default {
       timeline: null,
     }
   },
-  computed: {},
+  computed: {
+    tlMultiplier() {
+      return this.$device.isMobile ? 10 : 32
+    },
+  },
   // head() {
   //   return {
   //     bodyAttrs: {

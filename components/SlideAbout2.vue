@@ -3,12 +3,12 @@
     <article class="about-heading">
       <h3>Web Design</h3>
       <h3>Digital Experience</h3>
-      <h3>Creative Conception</h3>
       <h3>Graphic Design</h3>
+      <h3>Creative Concepting</h3>
       <p>
         Wireframes, User interface/experience, Website design, Graphic design,
         Brand Identity system, Editorial design, Retail & Brand activation,
-        concept research & design development.
+        concept research.
       </p>
     </article>
   </section>
@@ -60,7 +60,7 @@ h3 {
 }
 p {
   width: 100%;
-  max-width: 80%;
+  max-width: 55%;
   margin-top: 6vmin;
   font-family: 'Boska-Variable';
   font-variation-settings: 'wght' 400;

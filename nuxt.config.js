@@ -34,13 +34,16 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/color-mode',
+    '@nuxtjs/device',
   ],
 
   colorMode: {
     preference: 'dark', // default value of $colorMode.preference
     fallback: 'dark', // fallback value if not system preference found
   },
-
+  device: {
+    refreshOnResize: true,
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
