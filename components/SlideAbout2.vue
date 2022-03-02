@@ -104,5 +104,8 @@ p {
     top: 0;
     left: 0;
   }
+  @media screen and (max-width: 600px) {
+    bottom: 120px;
+  }
 }
 </style>
