@@ -4,7 +4,15 @@
       <div class="feature-image">
         <!-- <intersect @enter="videoIn" @leave="videoOut"> -->
         <observer v-if="isVideo" @on-change="onChange">
-          <div class="video"></div>
+          <!-- <div class="video"></div> -->
+          <video
+            :src="`https://res.cloudinary.com/jonserness/video/upload/f_auto,q_auto,w_1024/v1646320486/ZC/placeholder/video/${videoId}`"
+            muted
+            loop
+            playsinline
+            preload="auto"
+            :poster="featureImg"
+          ></video>
         </observer>
         <!-- </intersect> -->
         <img
@@ -46,8 +54,6 @@ import { gsap } from 'gsap'
 import { CustomEase } from 'gsap/CustomEase'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-import Vimeo from '@vimeo/player'
 
 import Observer from 'vue-intersection-observer'
 
@@ -134,18 +140,10 @@ export default {
       }
     },
     setupVideo() {
-      const vm = this
-      const el = this.$el.querySelector('.video')
+      // const vm = this
+      const el = this.$el.querySelector('video')
       if (this.isVideo) {
-        this.player = new Vimeo(el, {
-          id: vm.videoId,
-          // background: true,
-          // autoplay: true,
-          muted: true,
-          loop: true,
-          controls: false,
-          byline: false,
-        })
+        this.player = el
       }
       // this.player.pause()
     },
@@ -189,7 +187,7 @@ a {
   position: relative;
   aspect-ratio: 16 / 9;
   img,
-  .video,
+  video,
   iframe {
     width: 100%;
     height: 100%;
@@ -202,7 +200,7 @@ a {
   img {
     z-index: 1;
   }
-  .video {
+  video {
     z-index: 2;
   }
 }

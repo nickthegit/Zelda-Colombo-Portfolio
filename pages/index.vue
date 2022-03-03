@@ -71,9 +71,9 @@ export default {
           title: 'Renew Lab Store',
           client: 'Converse',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802860/ZC/placeholder/grandclosing.jpg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646321338/ZC/placeholder/Screenshot_2022-03-03_at_15.26.42.png',
           link: 'https://renewlabs.com',
-          videoId: '',
+          videoId: 'converserenewlabs',
         },
         {
           name: 'state-of-skate',
@@ -82,16 +82,16 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646223691/ZC/placeholder/Screenshot_2022-03-02_at_12.24.11.png',
           link: 'https://skatexsneakers.com',
-          videoId: '683713435',
+          videoId: 'Skatetimeline',
         },
         {
           name: 'data-viz',
           title: 'Data Visualization',
           client: 'StockX',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1645802844/ZC/placeholder/stateofskate.jpg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646321249/ZC/placeholder/Screenshot_2022-03-03_at_15.25.56.png',
           link: '',
-          videoId: '683041606',
+          videoId: 'stockXdataviz',
         },
         {
           name: 'excursions',
@@ -109,7 +109,7 @@ export default {
           featureImg:
             'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646223613/ZC/placeholder/Screenshot_2022-03-02_at_12.27.37.png',
           link: 'https://berlinbraves.com/',
-          videoId: '683721819',
+          videoId: 'berlinbraves',
         },
         {
           name: 'grammes',
