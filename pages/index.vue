@@ -98,9 +98,9 @@ export default {
           title: 'Excursions',
           client: 'StockX',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/v1645802841/ZC/placeholder/excersions.svg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646330519/ZC/placeholder/Screenshot_2022-03-03_at_17.58.55.png',
           link: 'https://stockx.com/excursions/',
-          videoId: '',
+          videoId: 'stockXexcursions',
         },
         {
           name: 'berlin-braves',
@@ -125,7 +125,7 @@ export default {
           title: 'Beyond The Miles',
           client: 'Nike NRC',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646328579/ZC/placeholder/Screenshot_2022-03-03_at_17.27.17.png',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1646330130/ZC/placeholder/Screenshot_2022-03-03_at_17.27.17_1.png',
           link: '',
           videoId: 'NIKENRC',
         },
