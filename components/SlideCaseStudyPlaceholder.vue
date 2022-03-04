@@ -3,7 +3,7 @@
     <article class="case-study-item">
       <div class="feature-image">
         <!-- <intersect @enter="videoIn" @leave="videoOut"> -->
-        <observer v-if="isVideo" @on-change="onChange">
+        <observer class="observer" v-if="isVideo" @on-change="onChange">
           <!-- <div class="video"></div> -->
           <video
             :src="`https://res.cloudinary.com/jonserness/video/upload/f_auto,q_auto,w_1024/v1646320486/ZC/placeholder/video/${videoId}`"
@@ -16,6 +16,7 @@
         </observer>
         <!-- </intersect> -->
         <img
+          v-else
           :src="featureImg"
           :alt="`${name} feature image - designed by Zelda Colombo`"
         />
@@ -202,6 +203,11 @@ a {
   }
   video {
     z-index: 2;
+  }
+  .observer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
   }
 }
 h2 {
