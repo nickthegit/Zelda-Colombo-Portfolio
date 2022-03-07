@@ -172,6 +172,9 @@ section {
     position: absolute;
     bottom: var(--genSpacing);
     right: var(--genSpacing);
+    path {
+      fill: var(--foregroundColor);
+    }
   }
 }
 article {
