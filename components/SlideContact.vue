@@ -4,7 +4,7 @@
       <h3>
         <a href="mailto:zelda.colombo@gmail.com">zelda.colombo@gmail.com</a>
       </h3>
-      <h4>Amsterdam (atm)</h4>
+      <h4>Amsterdam</h4>
       <h4><a href="tel:+33613750219">+33613750219</a></h4>
     </article>
   </section>
