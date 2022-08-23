@@ -4,7 +4,7 @@
       <ul>
         <li class="brand">
           <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
-          <nuxt-link v-else to="/">ZELDA COLOMBO</nuxt-link>
+          <nuxt-link v-else to="/">ZELDA COLOMBO — WIP</nuxt-link>
         </li>
         <li
           v-for="navItem in navItems"
