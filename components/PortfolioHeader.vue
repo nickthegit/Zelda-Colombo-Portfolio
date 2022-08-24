@@ -3,7 +3,9 @@
     <nav id="main-nav">
       <ul>
         <li class="brand">
-          <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
+          <button v-if="isHome" @click="homeScrollTo(0)">
+            ZELDA COLOMBO — WIP
+          </button>
           <nuxt-link v-else to="/">ZELDA COLOMBO — WIP</nuxt-link>
         </li>
         <li
@@ -27,8 +29,10 @@
     </nav>
     <nav id="mobile-nav">
       <div class="brand" @click="navOpen = false">
-        <button v-if="isHome" @click="homeScrollTo(0)">ZELDA COLOMBO</button>
-        <nuxt-link v-else to="/">ZELDA COLOMBO</nuxt-link>
+        <button v-if="isHome" @click="homeScrollTo(0)">
+          ZELDA COLOMBO — WIP
+        </button>
+        <nuxt-link v-else to="/">ZELDA COLOMBO — WIP</nuxt-link>
       </div>
       <button class="hamburger" @click="toggleNav">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 55 17">
