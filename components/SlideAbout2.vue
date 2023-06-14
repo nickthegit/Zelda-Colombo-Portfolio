@@ -1,8 +1,8 @@
 <template>
   <section>
     <article class="about-heading">
-      <h3>Web Design</h3>
       <h3>Digital Experience</h3>
+      <h3>Brand Activation</h3>
       <h3>Graphic Design</h3>
       <h3>Creative Concepting</h3>
       <p>
@@ -10,7 +10,7 @@
         Brand Identity system, Editorial design, Retail & Brand activation,
         concept research.
       </p>
-      <a href="/ZC_CV.pdf" download class="cv-icon">
+      <a href="/ZC_CV-2023.pdf" download class="cv-icon">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 39 83">
           <path
             fill="#5607FF"

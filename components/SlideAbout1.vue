@@ -2,8 +2,6 @@
   <section>
     <article class="about-heading">
       <h3>Teamplayer</h3>
-      <h3>Work with ethics</h3>
-      <h3>Always learning</h3>
       <h3>Keen eye for details</h3>
       <h3>Keep on playing...</h3>
     </article>
