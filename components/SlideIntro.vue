@@ -2,8 +2,10 @@
   <section>
     <article>
       <h1 id="jobTitle">
-        <span id="jobTitleHybrid">HYBRID</span>
+        <span id="width-block">EXPERIENCE</span>
+        <span id="jobTitleGraphic">GRAPHIC</span>
         <span id="jobTitleDigital">DIGITAL</span>
+        <span id="jobTitleExperience">EXPERIENCE</span>
         <br />
         <span id="jobTitleDesigner">DESIGNER</span>
       </h1>
@@ -72,21 +74,26 @@ export default {
         },
       }
       // ## SPLITS
-      const hybridSplit = new SplitText('#jobTitleHybrid', { type: 'chars' })
+      const graphicSplit = new SplitText('#jobTitleGraphic', { type: 'chars' })
       const digitalSplit = new SplitText('#jobTitleDigital', { type: 'chars' })
+      const experienceSplit = new SplitText('#jobTitleExperience', {
+        type: 'chars',
+      })
       const designerSplit = new SplitText('#jobTitleDesigner', {
         type: 'chars',
       })
-      const hybrid = hybridSplit.chars
+      const graphic = graphicSplit.chars
       const digital = digitalSplit.chars
       const designer = designerSplit.chars
+      const experience = experienceSplit.chars
       // ## sets
       gsap.set(digital, { autoAlpha: 0 })
-      // ## HYBRID/DIGITAL TL
+      gsap.set(experience, { autoAlpha: 0 })
+      // ## graphic/DIGITAL TL
       const tl = gsap.timeline({ repeat: -1 })
-      tl.from(hybrid, { ...animationOptions, autoAlpha: 0 })
+      tl.from(graphic, { ...animationOptions, autoAlpha: 0 })
       tl.to(
-        hybrid,
+        graphic,
         {
           autoAlpha: 0,
           duration: 0.5,
@@ -115,6 +122,34 @@ export default {
       )
       tl.to(
         digital,
+        {
+          autoAlpha: 0,
+          duration: 0.5,
+          stagger: {
+            each: 0.075,
+            from: 'random',
+          },
+        },
+        '+=2'
+      )
+      tl.to(
+        experience,
+        {
+          duration: 1,
+          autoAlpha: 1,
+          ease: CustomEase.create(
+            'custom',
+            'M0,0,C0.14,0,0.188,0.233,0.218,0.356,0.259,0.523,0.394,0.414,0.426,0.366,0.46,0.328,0.508,-0.044,0.562,0,0.598,0.029,0.606,0.834,0.676,0.824,0.738,0.74,0.815,0.398,0.834,0.412,0.853,0.426,0.897,0.985,0.911,0.998,0.922,0.994,0.939,0.984,0.954,0.984,0.969,0.984,1,1,1,1'
+          ),
+          stagger: {
+            each: 0.075,
+            from: 'random',
+          },
+        },
+        '-=0.75'
+      )
+      tl.to(
+        experience,
         {
           autoAlpha: 0,
           duration: 0.5,
@@ -157,7 +192,7 @@ export default {
 section {
   // background: salmon;
   height: 100vh;
-  padding: 0 var(--headerHeight);
+  // padding: 0 var(--headerHeight);
   // background: sandybrown;
   @media screen and (max-width: 900px) {
     padding: 0 20px;
@@ -197,12 +232,21 @@ h1 {
   // line-height: calc(var(--xl) * 0.95);
 }
 
-#jobTitleDigital {
+#jobTitleDigital,
+#jobTitleGraphic,
+#jobTitleExperience {
   width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
   display: block;
+  word-wrap: none;
+  white-space: nowrap;
+  text-align: center;
+}
+#width-block {
+  visibility: hidden;
 }
 </style>

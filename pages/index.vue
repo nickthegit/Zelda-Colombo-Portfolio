@@ -80,7 +80,7 @@ export default {
           title: 'Built for the Bold',
           client: 'Timberland',
           featureImg:
-            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_auto,w_1400/v1686751613/ZC/355de61189d205d176c4bc2a473a7f9fd46405cf-2560x1280.jpg',
+            'https://res.cloudinary.com/jonserness/image/upload/c_scale,dpr_auto,f_auto,q_100,w_2000/v1686751613/ZC/355de61189d205d176c4bc2a473a7f9fd46405cf-2560x1280.jpg',
           link: '',
           videoId: '',
         },
